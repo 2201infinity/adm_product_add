@@ -1,10 +1,11 @@
 import GlobalStyles from "./GlobalStyles";
+import ProductRegisterPage from "./pages/ProductRegisterPage";
 
 function App() {
   return (
     <>
       <GlobalStyles />
-      <div className="App"></div>
+      <ProductRegisterPage />
     </>
   );
 }
