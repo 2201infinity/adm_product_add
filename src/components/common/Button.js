@@ -13,7 +13,6 @@ function Button({ disabled, size, children, ...rest }) {
 
 const StyledButton = styled.button`
   ${(props) => props.sizeStyle}
-
   margin: 0;
   border: none;
   cursor: pointer;
