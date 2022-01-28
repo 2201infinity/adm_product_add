@@ -8,7 +8,6 @@ function ProductRegisterPage() {
         ProductRegisterPage
         <ProductOption />
       </div>
-      ;
     </>
   );
 }
