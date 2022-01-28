@@ -1,0 +1,74 @@
+import styled from "styled-components";
+
+function Toggle({ setChecked }) {
+  return (
+    <Wrapper>
+      <CheckBox onChange={() => setChecked()} type="checkbox" />
+    </Wrapper>
+  );
+}
+
+export default Toggle;
+
+const Wrapper = styled.div`
+  /* justify-content: center; */
+  align-items: center;
+  display: flex;
+  z-index: 0;
+`;
+const CheckBox = styled.input`
+  all: unset;
+  z-index: 1;
+  width: 4.2rem;
+  height: 2rem;
+  border-radius: 2em;
+
+  /* toggle off */
+  background-color: grey;
+  ::before {
+    position: absolute;
+    padding-right: 1em;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  ::after {
+    content: "";
+    z-index: 2;
+    top: calc((2rem - 1.6em) / 2);
+    left: calc((2rem - 1.6em) / 2);
+    width: 1.6em;
+    height: 1.6em;
+    display: block;
+    border-radius: 50%;
+    background: whitesmoke;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* toggle on */
+  &:checked {
+    background-color: #dedcf2;
+    ::before {
+      position: absolute;
+      padding-left: 1em;
+      width: 5rem;
+      height: 2rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+    }
+    ::after {
+      content: "";
+      position: relative;
+      display: block;
+      width: 1.6em;
+      height: 1.6em;
+      top: calc((2rem - 1.6em) / 2);
+      left: calc(4.2rem - 1.9em);
+      border-radius: 50%;
+      background: #2719b5;
+      transition: all 0.2s ease-in-out;
+    }
+  }
+`;
