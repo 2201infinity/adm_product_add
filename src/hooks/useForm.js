@@ -8,8 +8,13 @@ export default function useForm({ initialValues }) {
     setValues({ ...values, [name]: value });
   };
 
+  const clear = () => {
+    setValues(initialValues);
+  };
+
   return {
     values,
     handleChange,
+    clear,
   };
 }
