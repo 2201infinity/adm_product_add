@@ -21,24 +21,21 @@ function Sidebar() {
     <SidebarContainer>
       <Logo>설로인</Logo>
       <ul>
-        {MENULISTS.map((menu) =>
-          menu === '상품' ? (
-            <>
-              <MenuList>
-                {menu}
-                <ArrowDown />
-              </MenuList>
-              <InnerMenuList>상품 리스트</InnerMenuList>
-              <InnerMenuList>상품 재고 관리</InnerMenuList>
-              <AddProductMenu>상품 등록</AddProductMenu>
-            </>
-          ) : (
+        {MENULISTS.map((menu) => (
+          <React.Fragment key={menu}>
             <MenuList>
               {menu}
               <ArrowDown />
             </MenuList>
-          )
-        )}
+            {menu === '상품' && (
+              <>
+                <InnerMenuList>상품 리스트</InnerMenuList>
+                <InnerMenuList>상품 재고 관리</InnerMenuList>
+                <AddProductMenu>상품 등록</AddProductMenu>
+              </>
+            )}
+          </React.Fragment>
+        ))}
       </ul>
     </SidebarContainer>
   );
