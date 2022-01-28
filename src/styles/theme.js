@@ -6,6 +6,7 @@ const colors = {
   lightPurple: "#EFEFF3",
   toggleOnCircle: "#311b92",
   toggleOnBg: "#b39ddb",
+  border0: "#d4d4d4",
 };
 
 const sizes = {

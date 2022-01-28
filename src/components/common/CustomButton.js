@@ -4,11 +4,11 @@ import theme from "styles/theme";
 
 /**
  *
- * @param {"primary" | "secondary" | "tertiary"} variant
- * @param {number} width
- * @param {number} height
- * @param {React.ReactNode} children
- * @param {string} borderRadius
+ * @param {"primary" | "secondary" | "tertiary"} variant "primary" | "secondary" | "tertiary"
+ * @param {number} width number
+ * @param {number} height number
+ * @param {string} borderRadius string
+ * @param {React.ReactNode} children React.ReactNode
  */
 
 function CustomButton({
@@ -38,6 +38,7 @@ const ButtonStyled = styled.button`
   border-radius: ${({ borderRadius }) => borderRadius};
   font-size: 14px;
   font-weight: 700;
+  cursor: pointer;
   ${({ variant }) => {
     switch (variant) {
       case "primary":
