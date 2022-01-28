@@ -1,13 +1,19 @@
+import ProductOption from "components/ProductOption";
 import React from "react";
-import CategoryPage from "./CategoryPage";
+import styled from "styled-components";
 
 function ProductRegisterPage() {
   return (
-    <>
-      <div>ProductRegisterPage</div>
-      <CategoryPage />
-    </>
+    <ProductRegisterPageContainer>
+      <ProductOption />
+    </ProductRegisterPageContainer>
   );
 }
+
+const ProductRegisterPageContainer = styled.div`
+  flex: 1 auto;
+  overflow: auto;
+  padding: 20px;
+`;
 
 export default ProductRegisterPage;

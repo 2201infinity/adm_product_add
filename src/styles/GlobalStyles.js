@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyles = createGlobalStyle`
     ${reset}
@@ -14,6 +14,9 @@ const GlobalStyles = createGlobalStyle`
     a {
     color: inherit;
     text-decoration: none;
+    }
+    .react-datepicker-wrapper {
+        width: 200px;
     }
 `;
 

@@ -3,7 +3,7 @@ import theme from "styles/theme";
 
 function Button({ disabled, size, children, ...rest }) {
   return (
-    <StyledButton {...rest} disabled={disabled} sizeStyle={theme.sizes[size]}>
+    <StyledButton disabled={disabled} sizeStyle={theme.sizes[size]} {...rest}>
       {children}
     </StyledButton>
   );
