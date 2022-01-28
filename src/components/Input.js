@@ -12,5 +12,4 @@ const StyledInput = styled.input`
   border-radius: 5px;
   height: 38px;
   padding-left: 10px;
-  }
 `;

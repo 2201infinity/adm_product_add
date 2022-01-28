@@ -5,7 +5,7 @@ function Button({ disabled, size, children, ...rest }) {
   const sizeStyle = theme.colors[size];
 
   return (
-    <StyledButton disabled={disabled} sizeStyle={sizeStyle}>
+    <StyledButton disabled={disabled} sizeStyle={sizeStyle} {...rest}>
       {children}
     </StyledButton>
   );

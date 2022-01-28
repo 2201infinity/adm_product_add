@@ -1,9 +1,14 @@
+import ProductOption from "components/ProductOption";
 import React from "react";
 
 function ProductRegisterPage() {
   return (
     <>
-      <div>ProductRegisterPage</div>;
+      <div>
+        ProductRegisterPage
+        <ProductOption />
+      </div>
+      ;
     </>
   );
 }
