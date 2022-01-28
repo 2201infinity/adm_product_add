@@ -1,5 +1,5 @@
-import GlobalStyles from "./GlobalStyles";
-import ProductRegisterPage from "./pages/ProductRegisterPage";
+import GlobalStyles from "styles/GlobalStyles";
+import ProductRegisterPage from "pages/ProductRegisterPage";
 
 function App() {
   return (
