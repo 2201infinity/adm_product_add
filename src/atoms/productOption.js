@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selectorFamily, useRecoilValue } from "recoil";
 
 // const ProductOptionMocks = [
 //   {
@@ -28,3 +28,17 @@ export const productOptionState = atom({
   key: "productOptionState",
   default: [],
 });
+
+export const productOptionItem = selectorFamily({
+  key: "productOptionItem",
+  get:
+    (optionId) =>
+    ({ get }) => {
+      const options = get(productOptionState);
+      return options.find((option) => option.id === optionId);
+    },
+});
+
+export const useProductOptionItemState = (optionId) => {
+  return useRecoilValue(productOptionItem(optionId));
+};
