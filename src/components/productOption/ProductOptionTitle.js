@@ -15,7 +15,17 @@ function ProductOptionTitle() {
       {
         id: uuidv4(),
         img: "",
-        options: [],
+        options: [
+          {
+            id: uuidv4(),
+            name: "",
+            normalPrice: 0,
+            salePrice: 0,
+            stock: 0,
+            tax: "",
+            additionalOption: [],
+          },
+        ],
       },
     ]);
   };

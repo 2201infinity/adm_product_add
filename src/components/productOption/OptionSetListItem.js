@@ -1,26 +1,26 @@
 import {
   productOptionState,
-  useProductOptionItemState,
+  useProductOptionSetItemState,
 } from "atoms/productOption";
 import React from "react";
 import ImagePreviewButton from "components/common/ImagePreviewButton";
 import styled from "styled-components";
 import CustomButton from "components/common/CustomButton";
 import { useSetRecoilState } from "recoil";
+import OptionList from "./OptionList";
 
-function OptionSetListItem({ optionId }) {
+function OptionSetListItem({ optionSetId }) {
   const setProductOption = useSetRecoilState(productOptionState);
-  const optionItem = useProductOptionItemState(optionId);
-  console.log(optionItem);
+  const optionItem = useProductOptionSetItemState(optionSetId);
 
   const onDeleteOptionSet = () => {
     setProductOption((prevOptions) =>
-      prevOptions.filter((option) => option.id !== optionId)
+      prevOptions.filter((option) => option.id !== optionSetId)
     );
   };
 
   return (
-    <OptionItemContainer>
+    <OptionSetItemContainer>
       <DeleteButtonBlock>
         <CustomButton
           width={80}
@@ -34,13 +34,13 @@ function OptionSetListItem({ optionId }) {
 
       <InnerItem>
         <ImagePreviewButton />
-        {optionId}
+        <OptionList optionSetId={optionSetId} />
       </InnerItem>
-    </OptionItemContainer>
+    </OptionSetItemContainer>
   );
 }
 
-const OptionItemContainer = styled.div``;
+const OptionSetItemContainer = styled.div``;
 
 const DeleteButtonBlock = styled.div`
   width: 100%;
@@ -52,7 +52,7 @@ const DeleteButtonBlock = styled.div`
 const InnerItem = styled.div`
   background-color: #fff;
   width: 100%;
-  height: 500px;
+  min-height: 500px;
   padding: 10px;
   border-radius: 6px;
 `;

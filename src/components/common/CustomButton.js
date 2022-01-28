@@ -44,7 +44,7 @@ const ButtonStyled = styled.button`
       case "primary":
         return css`
           background-color: ${theme.colors.mainColor};
-          color: #fff
+          color: #fff;
           border: none;
         `;
       case "secondary":

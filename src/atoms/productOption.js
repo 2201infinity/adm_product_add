@@ -29,7 +29,7 @@ export const productOptionState = atom({
   default: [],
 });
 
-export const productOptionItem = selectorFamily({
+export const productOptionSetItem = selectorFamily({
   key: "productOptionItem",
   get:
     (optionId) =>
@@ -39,6 +39,6 @@ export const productOptionItem = selectorFamily({
     },
 });
 
-export const useProductOptionItemState = (optionId) => {
-  return useRecoilValue(productOptionItem(optionId));
+export const useProductOptionSetItemState = (optionId) => {
+  return useRecoilValue(productOptionSetItem(optionId));
 };

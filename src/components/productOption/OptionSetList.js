@@ -13,7 +13,7 @@ function OptionSetList() {
   return (
     <OptionSetListContainer>
       {options.map((option) => (
-        <OptionSetListItem key={option.id} optionId={option.id} />
+        <OptionSetListItem key={option.id} optionSetId={option.id} />
       ))}
     </OptionSetListContainer>
   );
