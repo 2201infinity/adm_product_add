@@ -40,7 +40,9 @@ function OptionSetListItem({ optionSetId }) {
   );
 }
 
-const OptionSetItemContainer = styled.div``;
+const OptionSetItemContainer = styled.div`
+  margin: 10px 0 40px;
+`;
 
 const DeleteButtonBlock = styled.div`
   width: 100%;
