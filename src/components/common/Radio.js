@@ -5,11 +5,11 @@ import styled from "styled-components";
  * @params onClick: () => onClick(value) 형식으로 들어와야 해요!
  */
 
-function Radio({ children, onClick, ...rest }) {
+function Radio({ children, name, onClick, ...rest }) {
   return (
     <RadioWrapper onClick={onClick}>
       <RadioBtn {...rest} onChange={onClick} type="radio" />
-      <RadioBtnLabel>{children}</RadioBtnLabel>
+      <RadioBtnLabel htmlFor={name}>{children}</RadioBtnLabel>
     </RadioWrapper>
   );
 }
@@ -40,9 +40,9 @@ const RadioBtn = styled.input`
   :before {
     content: "";
     display: block;
-    width: 70%;
-    height: 70%;
-    margin: 15% auto;
+    width: 80%;
+    height: 80%;
+    margin: 10% auto;
     border-radius: 50%;
   }
   :checked:before {
