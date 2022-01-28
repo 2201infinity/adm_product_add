@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
-import { DatePickerTemplate } from '../common/DatePicker';
+import { DateTimePicker } from '../common/DateTimePicker';
 import Radio from '../common/Radio';
 
 const EXPOSURE_PERIOD = [
@@ -68,7 +68,7 @@ export const ProductPeriod = () => {
               </Radio>
             );
           })}
-          <DatePickerTemplate
+          <DateTimePicker
             disabled={selectedExposureOption !== '노출 기간 설정'}
           />
         </Period>
@@ -89,9 +89,7 @@ export const ProductPeriod = () => {
               </Radio>
             );
           })}
-          <DatePickerTemplate
-            disabled={selectedSalesOption !== '판매 기간 설정'}
-          />
+          <DateTimePicker disabled={selectedSalesOption !== '판매 기간 설정'} />
         </Period>
       </PeriodContainer>
     </PeriodSection>
