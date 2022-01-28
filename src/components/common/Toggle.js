@@ -1,9 +1,15 @@
 import styled from "styled-components";
+import theme from "styles/theme";
 
-function Toggle({ setChecked }) {
+function Toggle({ toggleOnCircle, toggleOnBg, setChecked, ...rest }) {
   return (
     <Wrapper>
-      <CheckBox onChange={() => setChecked()} type="checkbox" />
+      <CheckBox
+        toggleOnCircle={theme.colors.toggleOnCircle}
+        toggleOnBg={theme.colors.toggleOnBg}
+        onChange={() => setChecked()}
+        type="checkbox"
+      />
     </Wrapper>
   );
 }
@@ -11,7 +17,6 @@ function Toggle({ setChecked }) {
 export default Toggle;
 
 const Wrapper = styled.div`
-  /* justify-content: center; */
   align-items: center;
   display: flex;
   z-index: 0;
@@ -47,7 +52,7 @@ const CheckBox = styled.input`
 
   /* toggle on */
   &:checked {
-    background-color: #dedcf2;
+    background-color: ${(props) => props.toggleOnBg};
     ::before {
       position: absolute;
       padding-left: 1em;
@@ -67,7 +72,7 @@ const CheckBox = styled.input`
       top: calc((2rem - 1.6em) / 2);
       left: calc(4.2rem - 1.9em);
       border-radius: 50%;
-      background: #2719b5;
+      background: ${(props) => props.toggleOnCircle};
       transition: all 0.2s ease-in-out;
     }
   }

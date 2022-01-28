@@ -2,10 +2,10 @@ import { css } from "styled-components";
 
 const colors = {
   mainColor: "#342F6A",
-  toggleOn: "#2719B5",
-  toggleOff: "#DEDCF2",
   filterGreen: "#EAF6D7",
   lightPurple: "#EFEFF3",
+  toggleOnCircle: "#311b92",
+  toggleOnBg: "#b39ddb",
 };
 
 const sizes = {
