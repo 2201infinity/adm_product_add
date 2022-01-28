@@ -3,7 +3,7 @@ import React from "react";
 function ProductRegisterPage() {
   return (
     <>
-      <div>ProductRegisterPage</div>;
+      <div>ProductRegisterPage</div>
     </>
   );
 }
