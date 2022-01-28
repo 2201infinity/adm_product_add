@@ -1,15 +1,51 @@
 import React from "react";
 import styled from "styled-components";
 
-function Radio({ name, children, onChange, ...rest }) {
+/**
+ * @params onClick: () => onClick(value) 형식으로 들어와야 해요!
+ */
+
+function Radio({ children, onClick, ...rest }) {
   return (
-    <StyledRadio>
-      <input type="radio" name={name} value={name} />
-      <label for={name}>{children}</label>
-    </StyledRadio>
+    <RadioWrapper onClick={onClick}>
+      <RadioBtn {...rest} onChange={onClick} type="radio" />
+      <RadioBtnLabel>{children}</RadioBtnLabel>
+    </RadioWrapper>
   );
 }
 
 export default Radio;
 
-const StyledRadio = styled.div``;
+const RadioWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 23px;
+`;
+
+const RadioBtnLabel = styled.label`
+  padding: 4px 0 0 5px;
+`;
+
+const RadioBtn = styled.input`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #808080;
+  border-radius: 50%;
+  outline: none;
+  background: #ffffff;
+
+  :before {
+    content: "";
+    display: block;
+    width: 70%;
+    height: 70%;
+    margin: 15% auto;
+    border-radius: 50%;
+  }
+  :checked:before {
+    background: #342f6a;
+  }
+`;
