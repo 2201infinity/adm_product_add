@@ -1,11 +1,13 @@
 import ProductOption from "components/ProductOption";
 import React from "react";
 import styled from "styled-components";
+import ProductDelivery from "components/ProductDelivery";
 
 function ProductRegisterPage() {
   return (
     <ProductRegisterPageContainer>
       <ProductOption />
+      <ProductDelivery />
     </ProductRegisterPageContainer>
   );
 }
