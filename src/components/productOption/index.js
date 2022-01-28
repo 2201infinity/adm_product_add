@@ -16,6 +16,7 @@ function ProductOption() {
 const ProductOptionContainer = styled.div`
   min-height: 100%;
   border: 1px solid ${theme.colors.border0};
+  width: 850px;
 `;
 
 export default ProductOption;
