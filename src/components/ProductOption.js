@@ -1,7 +1,8 @@
 import React from "react";
+import ProductOptionTemplate from "./ProductOptionTemplate";
 
 function ProductOption() {
-  return <div>ProductOption</div>;
+  return <ProductOptionTemplate>ProductOption</ProductOptionTemplate>;
 }
 
 export default ProductOption;
