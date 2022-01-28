@@ -9,7 +9,7 @@ function Radio({ children, name, onClick, ...rest }) {
   return (
     <RadioWrapper onClick={onClick}>
       <RadioBtn {...rest} onChange={onClick} type="radio" />
-      <RadioBtnLabel htmlFor={name}>{children}</RadioBtnLabel>
+      <RadioBtnLabel>{children}</RadioBtnLabel>
     </RadioWrapper>
   );
 }
