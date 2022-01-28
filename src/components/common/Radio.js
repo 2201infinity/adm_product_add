@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 /**
  * @params onClick: () => onClick(value) 형식으로 들어와야 해요!
@@ -20,6 +20,7 @@ const RadioWrapper = styled.div`
   display: flex;
   align-items: center;
   height: 23px;
+  margin-bottom: 12px;
 `;
 
 const RadioBtnLabel = styled.label`
@@ -38,7 +39,7 @@ const RadioBtn = styled.input`
   background: #ffffff;
 
   :before {
-    content: "";
+    content: '';
     display: block;
     width: 80%;
     height: 80%;
