@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "components/common/Input";
 import CustomButton from "./common/CustomButton";
@@ -42,7 +42,7 @@ const noticeDocs = [
   },
 ];
 
-function ProductInfo() {
+function ProductInfo({ cardNumber, ...rest }) {
   const { values, handleChange, handleSubmit } = useForm({
     initialValues: {
       productName: "",
@@ -54,8 +54,9 @@ function ProductInfo() {
   });
 
   const [inputList, setInputList] = useState(noticeDocs);
+  const [formList, setFormList] = useState([]);
 
-  const onDelete = (id) => {
+  const onDeleteCategory = (id) => {
     setInputList((prev) => prev.filter((item) => item.id !== id));
   };
 
@@ -80,10 +81,24 @@ function ProductInfo() {
     ]);
   };
 
+  const onDeleteCard = (id) => {
+    setFormList((prev) => prev.filter((item) => item.name !== id));
+  };
+
   return (
-    <div>
-      <h1> 정보고시</h1>
-      <form className="forms" onSubmit={handleSubmit}>
+    <NoticeCard>
+      <CardHeader>
+        <h1> 정보고시 {cardNumber}</h1>
+        <CustomButton
+          onClick={onDeleteCard}
+          variant="secondary"
+          width="50"
+          height="30"
+        >
+          삭제
+        </CustomButton>
+      </CardHeader>
+      <form onSubmit={handleSubmit}>
         {inputList.map((option) => {
           const { id, title, category, placeholder, essential } = option;
           return (
@@ -100,8 +115,7 @@ function ProductInfo() {
                   width="60"
                   height="38"
                   variant="primary"
-                  type="button"
-                  onClick={() => onDelete(id)}
+                  onClick={() => onDeleteCategory(id)}
                 >
                   삭제
                 </CustomButton>
@@ -124,21 +138,40 @@ function ProductInfo() {
             value={optionForm.values.placeholder}
           />
         </AddCategoryWrapper>
+        <AddButton
+          width="100"
+          height="38"
+          variant="secondary"
+          onClick={onAddCategory}
+          type="button"
+        >
+          항목 추가
+        </AddButton>
       </form>
-      <AddButton
-        width="100"
-        height="38"
-        variant="secondary"
-        onClick={onAddCategory}
-        type="button"
-      >
-        항목 추가
-      </AddButton>
-    </div>
+    </NoticeCard>
   );
 }
 
 export default ProductInfo;
+
+const NoticeCard = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  h1 {
+    font-weight: 600;
+    font-size: 18px;
+  }
+`;
+
+const CardHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 550px;
+  margin-bottom: 20px;
+`;
 
 const NoticeFormWrapper = styled.div`
   display: flex;
@@ -162,6 +195,7 @@ const AddButton = styled(CustomButton)`
 const AddCategoryWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 550px;
   padding: 0;
 `;
