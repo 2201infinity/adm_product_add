@@ -9,7 +9,7 @@ function Sidebar() {
 
 const SidebarContainer = styled.aside`
   background: #999;
-  width: 180px;
+  width: 250px;
 `;
 
 export default Sidebar;
