@@ -38,7 +38,7 @@ function OptionList({ optionSetId }) {
   return (
     <OptionListContainer>
       {options.map((option) => (
-        <OptionListItem optionId={option.id} />
+        <OptionListItem optionId={option.id} key={option.id} />
       ))}
 
       <CreateOptionButton

@@ -11,9 +11,10 @@ function ProductOptionContent() {
 }
 
 const OptionContentContainer = styled.div`
-  overflow: auto;
+  overflow: scroll;
   padding: 30px;
-  height: auto;
+  background-color: #f0f0f0;
+  max-height: 90vh;
 `;
 
 export default ProductOptionContent;
