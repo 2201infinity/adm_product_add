@@ -42,7 +42,7 @@ const noticeDocs = [
   },
 ];
 
-function ProductInfo({ cardNumber, ...rest }) {
+function ProductInfo({ cardNumber, itemId, onDeleteCard, ...rest }) {
   const { values, handleChange, handleSubmit } = useForm({
     initialValues: {
       productName: "",
@@ -81,16 +81,12 @@ function ProductInfo({ cardNumber, ...rest }) {
     ]);
   };
 
-  const onDeleteCard = (id) => {
-    setFormList((prev) => prev.filter((item) => item.name !== id));
-  };
-
   return (
     <NoticeCard>
       <CardHeader>
         <h1> 정보고시 {cardNumber}</h1>
         <CustomButton
-          onClick={onDeleteCard}
+          onClick={() => onDeleteCard(itemId)}
           variant="secondary"
           width="50"
           height="30"

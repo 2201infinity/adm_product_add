@@ -4,27 +4,25 @@ import CustomButton from "./common/CustomButton";
 import NoticeCard from "./NoticeCard";
 
 function NoticeProductInfo() {
-  const [cardNumber, setCardNumber] = useState(0);
-  const [cardList, setCardList] = useState([cardNumber]);
+  const [cardList, setCardList] = useState([1]);
 
   const onAddNewCard = () => {
-    setCardNumber((prev) => prev + 1);
-    setCardList((list) => [...list, cardNumber]);
+    const length = cardList[cardList.length - 1];
+    const test = length + 1;
+    setCardList((list) => [...list, test]);
   };
 
-  const onDeleteCard = (e) => {
-    const targetI = Number(e.target.id);
-    if (targetI >= 1) {
-      setCardList((list) => list.filter((items, i) => i !== targetI));
-    }
+  const onDeleteCard = (idx) => {
+    if (idx === 1) return;
+    setCardList((list) => list.filter((item) => item !== idx));
   };
 
   return (
     <ProductNoticeWrapper>
-      {cardList.map((items, i) => (
+      {cardList.map((item, i) => (
         <NoticeCard
           key={i}
-          id={i}
+          itemId={item}
           cardNumber={i + 1}
           onDeleteCard={onDeleteCard}
         />
