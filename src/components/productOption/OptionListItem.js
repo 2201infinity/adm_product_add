@@ -1,14 +1,39 @@
+import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import Input from "components/common/Input";
+import produce from "immer";
 import React from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
 
-function OptionListItem({ optionId }) {
+function OptionListItem({ optionSetId, optionId }) {
+  const setProductOption = useSetRecoilState(productOptionState);
+
+  const onDeleteOption = () => {
+    setProductOption((prevOptions) =>
+      produce(prevOptions, (draft) => {
+        for (let i = 0; i < draft.length; i++) {
+          if (draft[i].id === optionSetId) {
+            draft[i].options = draft[i].options.filter(
+              (item) => item.id !== optionId
+            );
+            break;
+          }
+        }
+      })
+    );
+  };
+
   return (
     <OptionItemContainer>
       <DeleteButtonBlock>
-        <CustomButton width={65} height={35} variant="tertiary">
+        <CustomButton
+          width={65}
+          height={35}
+          variant="tertiary"
+          onClick={onDeleteOption}
+        >
           삭제
         </CustomButton>
       </DeleteButtonBlock>

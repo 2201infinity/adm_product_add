@@ -1,7 +1,4 @@
-import {
-  productOptionState,
-  useProductOptionSetItemState,
-} from "atoms/productOption";
+import { productOptionState } from "atoms/productOption";
 import React from "react";
 import ImagePreviewButton from "components/common/ImagePreviewButton";
 import styled from "styled-components";
@@ -11,7 +8,6 @@ import OptionList from "./OptionList";
 
 function OptionSetListItem({ optionSetId }) {
   const setProductOption = useSetRecoilState(productOptionState);
-  const optionItem = useProductOptionSetItemState(optionSetId);
 
   const onDeleteOptionSet = () => {
     setProductOption((prevOptions) =>

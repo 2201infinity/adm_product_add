@@ -4,15 +4,15 @@ import {
 } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import produce from "immer";
 import OptionListItem from "./OptionListItem";
 
 function OptionList({ optionSetId }) {
-  const { options } = useProductOptionSetItemState(optionSetId);
-  const setProductOption = useSetRecoilState(productOptionState);
+  const [productOption, setProductOption] = useRecoilState(productOptionState);
+  const option = productOption.filter((option) => option.id === optionSetId);
 
   const onCreateOption = () => {
     setProductOption((prevOptions) =>
@@ -37,8 +37,12 @@ function OptionList({ optionSetId }) {
 
   return (
     <OptionListContainer>
-      {options.map((option) => (
-        <OptionListItem optionId={option.id} key={option.id} />
+      {option[0].options.map((option) => (
+        <OptionListItem
+          optionSetId={optionSetId}
+          optionId={option.id}
+          key={option.id}
+        />
       ))}
 
       <CreateOptionButton
