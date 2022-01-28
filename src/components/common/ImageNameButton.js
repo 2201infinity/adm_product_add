@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import theme from 'styles/theme';
+import { useCallback, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import theme from "styles/theme";
 
 export const ImageNameButton = ({ inputId, isMultiple }) => {
   const [imageFileNames, setImageFileNames] = useState([]);
@@ -21,7 +21,7 @@ export const ImageNameButton = ({ inputId, isMultiple }) => {
   );
 
   const onClickRemoveButton = (e) => {
-    inputValue.current.value = '';
+    inputValue.current.value = "";
     setIsShow(false);
     isMultiple &&
       setImageFileNames(
@@ -29,9 +29,9 @@ export const ImageNameButton = ({ inputId, isMultiple }) => {
       );
   };
 
-  useEffect(() => {
-    console.log(imageFileNames);
-  }, [imageFileNames]);
+  // useEffect(() => {
+  //   console.log(imageFileNames);
+  // }, [imageFileNames]);
 
   return (
     <Container>

@@ -38,7 +38,8 @@ function Category() {
           <CategoryItem key={`category_list${item.id}`}>
             <Input
               onChange={() => onChange(item.id)}
-              height="10"
+              height="20"
+              width="20"
               type="checkbox"
               value={item.name}
               checked={item.checked}
@@ -54,8 +55,8 @@ function Category() {
             {item.checked && (
               <SelectedCategory>
                 {item.name}
-                <Button size="sm" onClick={() => onDelete(item.id)}>
-                  x
+                <Button size="xm" onClick={() => onDelete(item.id)}>
+                  X
                 </Button>
               </SelectedCategory>
             )}
@@ -70,30 +71,33 @@ const Box = styled.div`
 `;
 
 const CategoryList = styled.div`
-  border: 2px solid red;
-  width: 300px;
+  width: 60%;
   height: 200px;
-  background-color: #f5d682;
   overflow-y: scroll;
+  border: 2px solid grey;
 `;
 const CategoryItem = styled.div`
-  border: 2px solid green;
+  display: flex;
   height: 30px;
 `;
 const SelectedCategoryList = styled.div`
-  border: 2px solid blue;
-  width: 300px;
+  border: 2px solid grey;
+  width: 30%;
   height: 200px;
   overflow-y: scroll;
-  background-color: #f5d682;
 `;
 const SelectedCategory = styled.div`
-  border: 2px solid purple;
   height: 30px;
+  background: #e8eaf6;
+  margin: 5px;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid #3f51b5;
 `;
 
-const BeforeSelectCategory = styled.div`
-  border: 2px solid black;
-`;
+const BeforeSelectCategory = styled.div``;
 
 export default Category;
