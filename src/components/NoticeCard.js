@@ -43,7 +43,7 @@ const noticeDocs = [
 ];
 
 function ProductInfo({ cardNumber, itemId, onDeleteCard, ...rest }) {
-  const { values, handleChange, handleSubmit } = useForm({
+  const { handleChange, handleSubmit } = useForm({
     initialValues: {
       productName: "",
       origin: "",

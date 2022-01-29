@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Toggle from "../common/Toggle";
 import OptionName from "./OptionName";
 import OptionContent from "./OptionContent";
@@ -11,10 +11,7 @@ function PreOrder({ preOrderOn, setShippingOn, setPickupOn, setPreOrderOn }) {
     setPreOrderOn((check) => !check);
     setShippingOn(false);
     setPickupOn(false);
-    setDisabled((state) => !state);
   };
-
-  const [disabled, setDisabled] = useState(true);
 
   const [orderEndTime, setOrderEndTime] = useState();
   const [earlyDeliveryTime, setEarlyDeliveryTime] = useState(null);
