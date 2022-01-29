@@ -1,34 +1,31 @@
-import React, { useRef, useState } from 'react';
-import styled from 'styled-components';
-import theme from 'styles/theme';
+import React, { useRef, useState } from "react";
+import styled from "styled-components";
+import theme from "styles/theme";
 
-export const ImagePreviewButton = () => {
-  const [loadedImageSrc, setLoadedImageSrc] = useState('');
+export default function ImagePreviewButton({ id }) {
+  const [loadedImageSrc, setLoadedImageSrc] = useState("");
   const inputValue = useRef(null);
 
   const onLoadImage = (e) => {
     const file = e.target.files[0];
-    if (!file.type.match('image.*')) {
-      alert('이미지 파일이 아닙니다.');
+    if (!file.type.match("image.*")) {
+      alert("이미지 파일이 아닙니다.");
       return;
     }
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setLoadedImageSrc(reader.result);
-        resolve();
-      };
-    });
+    setLoadedImageSrc(URL.createObjectURL(file));
   };
   const onClickRemoveButton = () => {
-    inputValue.current.value = '';
-    setLoadedImageSrc('');
+    inputValue.current.value = "";
+    setLoadedImageSrc("");
+    URL.revokeObjectURL(loadedImageSrc);
   };
+
   return (
     <Container>
-      <ImageAttachButton htmlFor="img">+ 이미지 첨부</ImageAttachButton>
-      <Input ref={inputValue} type="file" id="img" onChange={onLoadImage} />
+      {!loadedImageSrc && (
+        <ImageAttachButton htmlFor={id}>+ 이미지 첨부</ImageAttachButton>
+      )}
+      <Input ref={inputValue} type="file" id={id} onChange={onLoadImage} />
       {loadedImageSrc && (
         <>
           <ImagePreview src={loadedImageSrc} alt="preview" />
@@ -37,7 +34,7 @@ export const ImagePreviewButton = () => {
       )}
     </Container>
   );
-};
+}
 
 const Container = styled.div`
   position: relative;
@@ -84,4 +81,5 @@ const RemoveButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 `;
