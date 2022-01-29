@@ -4,5 +4,5 @@ export default function useToggle(initialValue = false) {
   const [value, setValue] = useState(initialValue);
   const onToggle = useCallback(() => setValue(!value), [value]);
 
-  return [value, onToggle];
+  return [value, onToggle, setValue];
 }
