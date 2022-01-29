@@ -9,7 +9,7 @@ function Toggle({ isChecked, ...rest }) {
         toggleOnCircle={theme.colors.toggleOnCircle}
         toggleOnBg={theme.colors.toggleOnBg}
         type="checkbox"
-        checked="isChecked"
+        checked={isChecked}
       />
     </Wrapper>
   );
