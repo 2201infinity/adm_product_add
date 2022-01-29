@@ -6,6 +6,7 @@ import { ImageNameButton } from "components/common/ImageNameButton";
 import theme from "styles/theme";
 import { useSetRecoilState } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
+import { productRegisterFormState } from "atoms/productRegisterForm";
 
 function ProductNameImage() {
   const [name, setName] = useState("");
@@ -13,6 +14,7 @@ function ProductNameImage() {
   const [thumbnailImage, setThumbnailImage] = useState([]);
   const [mainImages, setMainImages] = useState([]);
   const setProductRequried = useSetRecoilState(productRequiredInfoState);
+  const setProductForm = useSetRecoilState(productRegisterFormState);
 
   const onChangeThumbImage = (imgArr) => setThumbnailImage(imgArr);
   const onChangeMainImage = (imgArr) => setMainImages(imgArr);
@@ -24,6 +26,16 @@ function ProductNameImage() {
       setProductRequried((prev) => ({ ...prev, productInfo: true }));
     }
   }, [info, name, setProductRequried]);
+
+  useEffect(() => {
+    setProductForm((prev) => ({
+      ...prev,
+      상품명: name,
+      상품설명: info,
+      썸네일이미지: thumbnailImage,
+      메인이미지: mainImages,
+    }));
+  }, [info, name, thumbnailImage, mainImages, setProductForm]);
 
   return (
     <>
@@ -91,21 +103,20 @@ const Label = styled.div`
   width: 130px;
   display: flex;
   align-items: center;
-  padding:  8px;
+  padding: 8px;
   background-color: ${theme.colors.lightGray};
 `;
 
 const InputBox = styled.div`
   width: 100;
-  
 `;
 
 const InputCont = styled(Input)`
   margin: 8px 0 8px 8px;
-`
+`;
 
 const Span = styled.span`
   display: flex;
-  align-items:center;
+  align-items: center;
   margin-left: 8px;
-`
+`;

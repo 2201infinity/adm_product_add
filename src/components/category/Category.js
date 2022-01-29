@@ -6,6 +6,7 @@ import theme from "styles/theme";
 import { scrollbar } from "styles/utilsStyles";
 import { useSetRecoilState } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
+import { productRegisterFormState } from "atoms/productRegisterForm";
 
 const data = [
   { id: "0", name: "category0", checked: false },
@@ -24,6 +25,7 @@ const data = [
 function Category() {
   const [categoryList, setCategoryList] = useState(data);
   const setProductRequried = useSetRecoilState(productRequiredInfoState);
+  const setProductForm = useSetRecoilState(productRegisterFormState);
 
   const onToggleChecked = (id) => {
     setCategoryList((prev) =>
@@ -42,6 +44,13 @@ function Category() {
       productCategory: categoryList.some((category) => category.checked),
     }));
   }, [categoryList, setProductRequried]);
+
+  useEffect(() => {
+    setProductForm((prev) => ({
+      ...prev,
+      카테고리: categoryList.filter((category) => category.checked),
+    }));
+  }, [categoryList, setProductForm]);
 
   return (
     <Box>
