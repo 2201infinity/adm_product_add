@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import NoticeProductInfo from "components/NoticeProductInfo";
 import ProductDelivery from "components/delivery/ProductDelivery";
+import Benefit from "components/Benefit";
 import { ProductPeriod } from "components/period/Period";
 import CustomButton from "components/common/CustomButton";
 import { scrollbar } from "styles/utilsStyles";
@@ -24,6 +25,7 @@ function ProductRegisterPage() {
         <ProductOption />
         <NoticeProductInfo />
         <ProductDelivery />
+        <Benefit />
       </Inner>
     </ProductRegisterPageContainer>
   );
