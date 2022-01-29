@@ -30,6 +30,16 @@ export default function useProductOption() {
     ]);
   }, [setProductOption]);
 
+  // @Note 옵션 세트 삭제
+  const onDeleteOptionSet = useCallback(
+    (optionSetId) => {
+      setProductOption((prevOptions) =>
+        prevOptions.filter((option) => option.id !== optionSetId)
+      );
+    },
+    [setProductOption]
+  );
+
   // @Note 옵션 추가
   const onCreateOption = useCallback(
     (optionSetId) => {
@@ -136,6 +146,7 @@ export default function useProductOption() {
 
   return {
     onCreateOptionSet,
+    onDeleteOptionSet,
     onCreateOption,
     onDeleteOption,
     onCreateAdditionalOption,

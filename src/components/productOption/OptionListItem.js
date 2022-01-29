@@ -1,10 +1,7 @@
-/* eslint-disable array-callback-return */
 import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import Input from "components/common/Input";
-import produce from "immer";
-import { v4 as uuidv4 } from "uuid";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
@@ -18,7 +15,6 @@ function OptionListItem({ optionSetId, optionId }) {
   const [salePrice, onChangeSalePrice] = useInput();
   const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
 
-  //@TODO 이런거 다 hooks로 빼서 바로 불러올 수 있게 설정 해줘야 함
   const option = productOption
     .filter((option) => option.id === optionSetId)
     .map((option) => option.options.filter((option) => option.id === optionId));

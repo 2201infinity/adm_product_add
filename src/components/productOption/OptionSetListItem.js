@@ -1,21 +1,12 @@
-import { productOptionState } from "atoms/productOption";
 import React from "react";
 import ImagePreviewButton from "components/common/ImagePreviewButton";
 import styled from "styled-components";
 import CustomButton from "components/common/CustomButton";
-import { useSetRecoilState } from "recoil";
 import OptionList from "./OptionList";
+import useProductOption from "hooks/useProductOption";
 
 function OptionSetListItem({ optionSetId }) {
-  const setProductOption = useSetRecoilState(productOptionState);
-
-  const onDeleteOptionSet = () => {
-    setProductOption((prevOptions) =>
-      prevOptions.filter((option) => option.id !== optionSetId)
-    );
-  };
-
-  console.log(optionSetId);
+  const { onDeleteOptionSet } = useProductOption();
 
   return (
     <OptionSetItemContainer>
@@ -24,7 +15,7 @@ function OptionSetListItem({ optionSetId }) {
           width={80}
           height={35}
           variant="tertiary"
-          onClick={onDeleteOptionSet}
+          onClick={() => onDeleteOptionSet(optionSetId)}
         >
           삭제
         </CustomButton>
