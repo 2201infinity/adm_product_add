@@ -14,17 +14,15 @@ import { productRequiredInfoState } from "atoms/productRequiredInfo";
 function ProductRegisterPage() {
   const productRequired = useRecoilValue(productRequiredInfoState);
 
+  const { productCategory, productInfo, productOption } = productRequired;
+
   const onRegisterProduct = () => {
-    if (productRequired.productOption && productRequired.productInfo) {
+    if (productOption && productInfo && productCategory) {
       alert("상품 등록이 완료되었습니다.");
     } else {
       alert("필수값을 모두 입력해 주세요.");
     }
   };
-
-  useEffect(() => {
-    console.log("productRequired", productRequired);
-  }, [productRequired]);
 
   return (
     <ProductRegisterPageContainer>

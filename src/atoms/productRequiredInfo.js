@@ -5,5 +5,6 @@ export const productRequiredInfoState = atom({
   default: {
     productInfo: false,
     productOption: false,
+    productCategory: false,
   },
 });

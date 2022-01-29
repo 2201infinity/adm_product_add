@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "components/common/Input";
 import styled from "styled-components";
 import Button from "components/common/Button";
 import theme from "styles/theme";
 import { scrollbar } from "styles/utilsStyles";
+import { useSetRecoilState } from "recoil";
+import { productRequiredInfoState } from "atoms/productRequiredInfo";
 
 const data = [
   { id: "0", name: "category0", checked: false },
@@ -21,6 +23,7 @@ const data = [
 
 function Category() {
   const [categoryList, setCategoryList] = useState(data);
+  const setProductRequried = useSetRecoilState(productRequiredInfoState);
 
   const onToggleChecked = (id) => {
     setCategoryList((prev) =>
@@ -32,6 +35,13 @@ function Category() {
 
   const onChange = (id) => onToggleChecked(id);
   const onDelete = (clickedId) => onToggleChecked(clickedId);
+
+  useEffect(() => {
+    setProductRequried((prev) => ({
+      ...prev,
+      productCategory: categoryList.some((category) => category.checked),
+    }));
+  }, [categoryList, setProductRequried]);
 
   return (
     <Box>
