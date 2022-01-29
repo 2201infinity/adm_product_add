@@ -74,17 +74,19 @@ const CategoryList = styled.div`
   width: 60%;
   height: 200px;
   overflow-y: scroll;
-  border: 2px solid grey;
+  border: 1px solid grey;
+  border-radius: 6px;
 `;
 const CategoryItem = styled.div`
   display: flex;
   height: 30px;
 `;
 const SelectedCategoryList = styled.div`
-  border: 2px solid grey;
+  border: 1px solid grey;
   width: 30%;
   height: 200px;
   overflow-y: scroll;
+  border-radius: 6px;
 `;
 const SelectedCategory = styled.div`
   height: 30px;

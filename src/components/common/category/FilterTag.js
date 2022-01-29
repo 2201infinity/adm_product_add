@@ -77,30 +77,33 @@ function FilterTag() {
     <>
       <FilterBox>
         <div ref={filterBoxRef}>
-          <span>필터 태그</span>
-          <Input
-            type="text"
-            value={query}
-            onChange={onChange}
-            onFocus={() => setFocusOn(true)}
-            placeholder="검색어를 입력하세요."
-          />
-
-          {focusOn && <p>지정된 필터 태그</p>}
-          <SelectedTagList>
-            {tagList.map((item) => (
-              <React.Fragment key={`tag_list${item.id}`}>
-                {item.checked && (
-                  <SelectedTag>
-                    {item.name}
-                    <Button size="xm" onClick={() => onClick(item.id)}>
-                      x
-                    </Button>
-                  </SelectedTag>
-                )}
-              </React.Fragment>
-            ))}
-          </SelectedTagList>
+          <SearchBar>
+            <label>필터 태그</label>
+            <Input
+              type="text"
+              value={query}
+              onChange={onChange}
+              onFocus={() => setFocusOn(true)}
+              placeholder="검색어를 입력하세요."
+            />
+          </SearchBar>
+          <TagBox>
+            {focusOn && <p>지정된 필터 태그</p>}
+            <SelectedTagList>
+              {tagList.map((item) => (
+                <React.Fragment key={`tag_list${item.id}`}>
+                  {item.checked && (
+                    <SelectedTag>
+                      {item.name}
+                      <Button size="xm" onClick={() => onClick(item.id)}>
+                        x
+                      </Button>
+                    </SelectedTag>
+                  )}
+                </React.Fragment>
+              ))}
+            </SelectedTagList>
+          </TagBox>
 
           {focusOn && (
             <TagList>
@@ -130,6 +133,17 @@ const FilterBox = styled.div`
   margin: 10px;
   display: flex;
   flex-direction: column;
+  border: 1px solid grey;
+  border-radius: 6px;
+  justify-content: space-around;
+`;
+
+const SearchBar = styled.div`
+  margin: 10px;
+`;
+
+const TagBox = styled.div`
+  margin: 10px;
 `;
 
 const TagList = styled.div`
@@ -141,6 +155,8 @@ const TagList = styled.div`
   height: 80px;
   margin: 10px;
   padding-top: 10px;
+  border: 1px solid grey;
+  border-radius: 6px;
 `;
 
 const Tag = styled.div`
@@ -156,7 +172,7 @@ const Tag = styled.div`
 
 const SelectedTagList = styled.div`
   display: flex;
-  height: 20px;
+  height: 40px;
   margin: 10px;
   width: 100%;
 `;
