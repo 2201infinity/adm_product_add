@@ -9,13 +9,18 @@ const tags = [
   { id: "1", name: "베나라", checked: false },
   { id: "2", name: "베베", checked: false },
   { id: "3", name: "한우", checked: false },
-  { id: "4", name: "tag4", checked: false },
-  { id: "5", name: "tag5", checked: false },
-  { id: "6", name: "tag6", checked: false },
-  { id: "7", name: "tag7", checked: false },
-  { id: "8", name: "tag8", checked: false },
-  { id: "9", name: "tag9", checked: false },
-  { id: "10", name: "tag10", checked: false },
+  { id: "4", name: "베이비", checked: false },
+  { id: "5", name: "국내산", checked: false },
+  { id: "6", name: "차돌박이", checked: false },
+  { id: "7", name: "명품", checked: false },
+  { id: "8", name: "일등급", checked: false },
+  { id: "9", name: "선물세트", checked: false },
+  { id: "10", name: "소고기", checked: false },
+  { id: "11", name: "선물세트", checked: false },
+  { id: "12", name: "소고기", checked: false },
+  { id: "13", name: "소고기", checked: false },
+  { id: "14", name: "선물세트", checked: false },
+  { id: "15", name: "소고기", checked: false },
 ];
 
 function FilterTag() {
@@ -23,7 +28,7 @@ function FilterTag() {
   const [focusOn, setFocusOn] = useState(false);
   const [query, setQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
-  const divRef = useRef();
+  const filterBoxRef = useRef();
   const onToggleChecked = (id) => {
     setTagList((prev) =>
       prev.map((item) =>
@@ -57,22 +62,21 @@ function FilterTag() {
   };
 
   useEffect(() => {
-    function hco(e) {
-      if (divRef.current && !divRef.current.contains(e.target)) {
-        console.log("나갔다");
+    const handleClickOutside = (e) => {
+      if (filterBoxRef.current && !filterBoxRef.current.contains(e.target)) {
         setFocusOn(false);
       }
-    }
-    document.addEventListener("mousedown", hco);
-    return () => {
-      document.removeEventListener("mousedown", hco);
     };
-  }, [divRef]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [filterBoxRef]);
 
   return (
     <>
       <FilterBox>
-        <div ref={divRef}>
+        <div ref={filterBoxRef}>
           <span>필터 태그</span>
           <Input
             type="text"
@@ -104,9 +108,7 @@ function FilterTag() {
                 searchResult.map((item) => (
                   <React.Fragment key={`search_tag_list${item.id}`}>
                     {!item.checked && (
-                      <Tag onMouseDown={() => onClick(item.id)}>
-                        {item.name}
-                      </Tag>
+                      <Tag onClick={() => onClick(item.id)}>{item.name}</Tag>
                     )}
                   </React.Fragment>
                 ))
@@ -132,18 +134,22 @@ const FilterBox = styled.div`
 
 const TagList = styled.div`
   display: flex;
-  height: 60px;
+  align-items: flex-start;
+  flex-wrap: wrap;
   width: 100%;
   overflow-y: scroll;
-  height: 100px;
+  height: 80px;
+  margin: 10px;
+  padding-top: 10px;
 `;
 
 const Tag = styled.div`
-  display: inline;
+  text-align: center;
   margin: 2px;
   border: 1px solid;
   height: 30px;
-  width: 60px;
+  background-color: #e0f4cb;
+  padding: 4px;
   border-radius: 5px;
   cursor: pointer;
 `;
@@ -153,12 +159,19 @@ const SelectedTagList = styled.div`
   height: 20px;
   margin: 10px;
   width: 100%;
-  z-index: 9999;
-  position: relative;
 `;
 
 const SelectedTag = styled.div`
   border: 1px solid;
   border-radius: 5px;
   margin: 2px;
+  cursor: pointer;
+  height: 30px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  padding-left: 3px;
+  padding-right: 0px;
+  background-color: #e0f4cb;
 `;
