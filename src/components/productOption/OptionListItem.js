@@ -1,14 +1,24 @@
+/* eslint-disable array-callback-return */
 import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import Input from "components/common/Input";
 import produce from "immer";
+import { v4 as uuidv4 } from "uuid";
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
+import AdditionalOptionList from "./AdditionalOptionList";
 
 function OptionListItem({ optionSetId, optionId }) {
-  const setProductOption = useSetRecoilState(productOptionState);
+  const [productOption, setProductOption] = useRecoilState(productOptionState);
+
+  //@TODO 이런거 다 hooks로 빼서 바로 불러올 수 있게 설정 해줘야 함
+  const option = productOption
+    .filter((option) => option.id === optionSetId)
+    .map((option) => option.options.filter((option) => option.id === optionId));
+
+  const additionalOptionList = option[0][0].additionalOptions;
 
   const onDeleteOption = () => {
     setProductOption((prevOptions) =>
@@ -18,6 +28,27 @@ function OptionListItem({ optionSetId, optionId }) {
             draft[i].options = draft[i].options.filter(
               (item) => item.id !== optionId
             );
+            break;
+          }
+        }
+      })
+    );
+  };
+
+  const onCreateAdditionalOption = () => {
+    setProductOption((prevOptions) =>
+      produce(prevOptions, (draft) => {
+        for (let i = 0; i < draft.length; i++) {
+          if (draft[i].id === optionSetId) {
+            draft[i].options.map((item) => {
+              if (item.id === optionId) {
+                item.additionalOptions.push({
+                  id: uuidv4(),
+                  additionalName: "",
+                  additionalNormalPrice: 0,
+                });
+              }
+            });
             break;
           }
         }
@@ -76,7 +107,9 @@ function OptionListItem({ optionSetId, optionId }) {
         </SelectBox>
       </OptionInputGroup>
 
-      <CreateAdditionalOptionButton>
+      <AdditionalOptionList additionalOptionList={additionalOptionList} />
+
+      <CreateAdditionalOptionButton onClick={onCreateAdditionalOption}>
         추가 옵션 상품 추가
       </CreateAdditionalOptionButton>
     </OptionItemContainer>
@@ -84,7 +117,7 @@ function OptionListItem({ optionSetId, optionId }) {
 }
 
 const OptionItemContainer = styled.div`
-  height: 230px;
+  min-height: 230px;
   border: 1px solid ${theme.colors.border0};
   margin: 10px 0;
   padding: 16px;
@@ -135,6 +168,7 @@ const SelectBox = styled.select`
 
 const CreateAdditionalOptionButton = styled.span`
   font-weight: 700;
+  cursor: pointer;
 `;
 
 export default OptionListItem;

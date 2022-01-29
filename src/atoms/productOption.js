@@ -4,7 +4,7 @@ import { atom, selectorFamily, useRecoilValue } from "recoil";
 //   {
 //     id: 1,
 //     img: "",
-//     option: [
+//     options: [
 //       {
 //         id: 1,
 //         name: "",
@@ -12,7 +12,7 @@ import { atom, selectorFamily, useRecoilValue } from "recoil";
 //         salePrice: 0,
 //         stock: 0,
 //         tax: "",
-//         additionalOption: [
+//         additionalOptions: [
 //           {
 //             id: 1,
 //             additionalName: "",

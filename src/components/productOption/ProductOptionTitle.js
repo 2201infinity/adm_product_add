@@ -23,7 +23,7 @@ function ProductOptionTitle() {
             salePrice: 0,
             stock: 0,
             tax: "",
-            additionalOption: [],
+            additionalOptions: [],
           },
         ],
       },

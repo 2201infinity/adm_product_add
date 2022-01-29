@@ -26,7 +26,7 @@ function OptionList({ optionSetId }) {
               salePrice: 0,
               stock: 0,
               tax: "",
-              additionalOption: [],
+              additionalOptions: [],
             });
             break;
           }

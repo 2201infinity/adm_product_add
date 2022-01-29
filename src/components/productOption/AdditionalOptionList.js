@@ -1,7 +1,14 @@
 import React from "react";
+import AdditionalOptionListItem from "./AdditionalOptionListItem";
 
-function AdditionalOptionList() {
-  return <div>AdditionalOptionList</div>;
+function AdditionalOptionList({ additionalOptionList }) {
+  return (
+    <div>
+      {additionalOptionList.map((additionalOption) => (
+        <AdditionalOptionListItem key={additionalOption.id} />
+      ))}
+    </div>
+  );
 }
 
 export default AdditionalOptionList;
