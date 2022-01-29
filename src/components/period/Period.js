@@ -1,4 +1,6 @@
+import { productRegisterFormState } from "atoms/productRegisterForm";
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
 import { DateTimePicker } from "../common/DateTimePicker";
@@ -35,6 +37,7 @@ const SALES_PERIOD = [
 ];
 
 export const ProductPeriod = () => {
+  const setProductForm = useSetRecoilState(productRegisterFormState);
   const defaultExposureOption = EXPOSURE_PERIOD[0].value;
   const defaultSalesOption = SALES_PERIOD[0].value;
   const [selectedExposureOption, setselectedExposureOption] = useState(
@@ -44,10 +47,12 @@ export const ProductPeriod = () => {
     useState(defaultSalesOption);
   const onChangeExposureOption = (value) => {
     setselectedExposureOption(value);
+    setProductForm((prev) => ({ ...prev, 상품노출기한: value }));
   };
 
   const onChnageSalesOption = (value) => {
     setSelectedSalesOption(value);
+    setProductForm((prev) => ({ ...prev, 상품판매기한: value }));
   };
   return (
     <PeriodSection>

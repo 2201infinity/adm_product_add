@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Input from "components/common/Input";
 import Button from "components/common/Button";
 import theme from "styles/theme";
+import { productRegisterFormState } from "atoms/productRegisterForm";
+import { useSetRecoilState } from "recoil";
 
 const tags = [
   { id: "0", name: "베스트", checked: false },
@@ -26,6 +28,7 @@ const tags = [
 
 function FilterTag() {
   const [tagList, setTagList] = useState(tags);
+  const setProductForm = useSetRecoilState(productRegisterFormState);
   const [focusOn, setFocusOn] = useState(false);
   const [query, setQuery] = useState("");
   const [searchResult, setSearchResult] = useState([]);
@@ -61,6 +64,13 @@ function FilterTag() {
       )
     );
   };
+
+  useEffect(() => {
+    setProductForm((prev) => ({
+      ...prev,
+      필터태그: tagList.filter((item) => item.checked),
+    }));
+  }, [setProductForm, tagList]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {

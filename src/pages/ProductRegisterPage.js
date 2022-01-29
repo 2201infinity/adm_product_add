@@ -1,5 +1,5 @@
 import ProductOption from "components/productOption";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import NoticeProductInfo from "components/NoticeProductInfo";
 import ProductDelivery from "components/delivery/ProductDelivery";
@@ -12,9 +12,11 @@ import theme from "styles/theme";
 import ProductImage from "components/common/ProductImage";
 import { useRecoilValue } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
+import { productRegisterFormState } from "atoms/productRegisterForm";
 
 function ProductRegisterPage() {
   const productRequired = useRecoilValue(productRequiredInfoState);
+  const productRegisterForm = useRecoilValue(productRegisterFormState);
 
   const { productCategory, productInfo, productOption } = productRequired;
 
@@ -25,6 +27,10 @@ function ProductRegisterPage() {
       alert("필수값을 모두 입력해 주세요.");
     }
   };
+
+  useEffect(() => {
+    console.log(productRegisterForm);
+  }, [productRegisterForm]);
 
   return (
     <ProductRegisterPageContainer>

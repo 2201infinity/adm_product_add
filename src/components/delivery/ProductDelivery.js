@@ -1,4 +1,7 @@
+import { productRegisterFormState } from "atoms/productRegisterForm";
 import React, { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
+import { useSetRecoilState } from "recoil";
 import DesignatedShipping from "./DesignatedShipping";
 import Pickup from "./Pickup";
 import PreOrder from "./PreOrder";
@@ -7,6 +10,18 @@ function ProductDelivery() {
   const [shippingOn, setShippingOn] = useState(false);
   const [pickupOn, setPickupOn] = useState(false);
   const [preOrderOn, setPreOrderOn] = useState(false);
+  const setProductForm = useSetRecoilState(productRegisterFormState);
+
+  useEffect(() => {
+    setProductForm((prev) => ({
+      ...prev,
+      상품배송설정: {
+        사용자배송일출발일지정: shippingOn,
+        방문수령: pickupOn,
+        선주문예약배송: preOrderOn,
+      },
+    }));
+  }, [shippingOn, pickupOn, preOrderOn, setProductForm]);
 
   return (
     <>
