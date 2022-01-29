@@ -10,9 +10,13 @@ import styled from "styled-components";
 import theme from "styles/theme";
 import AdditionalOptionList from "./AdditionalOptionList";
 import useProductOption from "hooks/useProductOption";
+import useInput from "hooks/useInput";
 
 function OptionListItem({ optionSetId, optionId }) {
   const [productOption, setProductOption] = useRecoilState(productOptionState);
+  const [normalPrice, onChangeNormalPrice] = useInput();
+  const [salePrice, onChangeSalePrice] = useInput();
+  const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
 
   //@TODO 이런거 다 hooks로 빼서 바로 불러올 수 있게 설정 해줘야 함
   const option = productOption
@@ -20,19 +24,6 @@ function OptionListItem({ optionSetId, optionId }) {
     .map((option) => option.options.filter((option) => option.id === optionId));
 
   const additionalOptionList = option[0][0].additionalOptions;
-
-  const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
-
-  const [normalPrice, setNormalPrice] = useState();
-  const [salePrice, setSalePrice] = useState();
-
-  const onChangeNormalPrice = (e) => {
-    setNormalPrice(e.target.value);
-  };
-
-  const onChangeSalePrice = (e) => {
-    setSalePrice(e.target.value);
-  };
 
   const discountRate = useMemo(
     () => Math.floor(((normalPrice - salePrice) / normalPrice) * 100),
