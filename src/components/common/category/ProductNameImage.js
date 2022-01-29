@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
 import styled from "styled-components";
 import Input from "components/common/Input";
 import { ImageNameButton } from "components/common/ImageNameButton";
+import theme from "styles/theme";
 
 function ProductNameImage() {
   const [name, setName] = useState("");
@@ -15,61 +17,75 @@ function ProductNameImage() {
   return (
     <>
       <InputBox>
-        <label>상품명</label>
-        <Input
-          onChange={(e) => setName(e.target.value)}
-          width="600"
-          placeholder="상품명을 입력해 주세요."
-        />
-        <TextBox>
-          <span>상품코드 </span>
-          <span>1904858</span>
-        </TextBox>
+        <ProductNameBox>
+          <LabelInputBlock>
+            <Label>상품명*</Label>
+            <Input
+              onChange={(e) => setName(e.target.value)}
+              width="600"
+              placeholder="상품명을 입력해 주세요."
+            />
+          </LabelInputBlock>
+          <LabelInputBlock>
+            <Label>상품코드*</Label>
+            <span>1904858</span>
+          </LabelInputBlock>
+        </ProductNameBox>
       </InputBox>
-      <InputBox>
-        <label>상품 구성 소개 정보</label>
+      <LabelInputBlock>
+        <Label>상품 구성 소개 정보</Label>
         <Input
           onChange={(e) => setInfo(e.target.value)}
           width="600"
           placeholder="상품 구성 소개 정보를 입력해 주세요."
         />
-      </InputBox>
-      <ImageBox>
-        <span>상품 썸네일</span>
+      </LabelInputBlock>
+      <LabelInputBlock>
+        <Label>상품 썸네일</Label>
         <ImageNameButton
           isMultiple={false}
           inputId="thumbnailImg"
           onChangeProductImage={onChangeThumbImage}
         />
-      </ImageBox>
-      <ImageBox>
-        <span>상품 대표 이미지</span>
+      </LabelInputBlock>
+      <LabelInputBlock>
+        <Label>상품 대표 이미지</Label>
         <ImageNameButton
           isMultiple={true}
           inputId="representImg"
           onChangeProductImage={onChangeMainImage}
         />
-      </ImageBox>
-      <TextBox>
-        <span>상품 총 재고</span>
+      </LabelInputBlock>
+      <LabelInputBlock>
+        <Label>상품 총 재고</Label>
         <span> 41 개</span>
-      </TextBox>
+      </LabelInputBlock>
     </>
   );
 }
 
 export default ProductNameImage;
 
-const InputBox = styled.div`
-  margin: 10px;
-  width: 100;
+const LabelInputBlock = styled.div`
+  display: flex;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid ${theme.colors.border1};
 `;
-const ImageBox = styled.div`
-  margin: 10px;
-  width: 100;
+
+const ProductNameBox = styled.div`
   display: flex;
 `;
-const TextBox = styled.div`
-  margin: 10px;
+
+const Label = styled.div`
+  height: 100%;
+  width: 130px;
+  display: flex;
+  align-items: center;
+  padding: 0px 8px;
+  background-color: ${theme.colors.lightGray};
+`;
+
+const InputBox = styled.div`
   width: 100;
 `;

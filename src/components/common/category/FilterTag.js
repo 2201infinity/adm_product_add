@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Input from "components/common/Input";
 import Button from "components/common/Button";
+import theme from "styles/theme";
 
 const tags = [
   { id: "0", name: "베스트", checked: false },
@@ -78,8 +79,8 @@ function FilterTag() {
       <FilterBox>
         <div ref={filterBoxRef}>
           <SearchBar>
-            <label>필터 태그</label>
-            <Input
+            <Label>필터 태그</Label>
+            <FilterInput
               type="text"
               value={query}
               onChange={onChange}
@@ -130,16 +131,31 @@ export default FilterTag;
 
 const FilterBox = styled.div`
   width: 100%;
-  margin: 10px;
   display: flex;
   flex-direction: column;
-  border: 1px solid grey;
+  border: 1px solid ${theme.colors.border1};
   border-radius: 6px;
   justify-content: space-around;
 `;
 
+const Label = styled.div`
+  background-color: ${theme.colors.lightGray};
+  width: 130px;
+  height: 100%;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+`;
+
+const FilterInput = styled(Input)`
+  flex: 1 auto;
+`;
+
 const SearchBar = styled.div`
-  margin: 10px;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  border-bottom: 1px solid ${theme.colors.border1};
 `;
 
 const TagBox = styled.div`

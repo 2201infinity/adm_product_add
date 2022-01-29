@@ -1,19 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
-import { MdKeyboardArrowDown } from 'react-icons/md';
-import theme from 'styles/theme';
+import React from "react";
+import styled from "styled-components";
+import { MdKeyboardArrowDown } from "react-icons/md";
+import theme from "styles/theme";
 
 const MENULISTS = [
-  '기본 설정',
-  '회원',
-  '진열',
-  '상품',
-  '주문',
-  '배송',
-  '프로모션',
-  '혜택',
-  '고객 센터 관리',
-  '알림',
+  "기본 설정",
+  "회원",
+  "진열",
+  "상품",
+  "주문",
+  "배송",
+  "프로모션",
+  "혜택",
+  "고객 센터 관리",
+  "알림",
 ];
 
 function Sidebar() {
@@ -27,7 +27,7 @@ function Sidebar() {
               {menu}
               <ArrowDown />
             </MenuList>
-            {menu === '상품' && (
+            {menu === "상품" && (
               <>
                 <InnerMenuList>상품 리스트</InnerMenuList>
                 <InnerMenuList>상품 재고 관리</InnerMenuList>
@@ -48,7 +48,7 @@ const Logo = styled.h2`
 `;
 
 const SidebarContainer = styled.aside`
-  min-width: 150px;
+  min-width: 250px;
   border-right: 1.5px solid ${theme.colors.lightPurple};
   font-weight: 600;
   font-size: 14px;

@@ -7,6 +7,8 @@ const colors = {
   toggleOnCircle: "#311b92",
   toggleOnBg: "#b39ddb",
   border0: "#d4d4d4",
+  border1: "#EFEFF3",
+  lightGray: "#fbfbfb",
 };
 
 const sizes = {

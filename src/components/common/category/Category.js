@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Input from "components/common/Input";
 import styled from "styled-components";
 import Button from "components/common/Button";
+import theme from "styles/theme";
+import { scrollbar } from "styles/utilsStyles";
 
 const data = [
   { id: "0", name: "category0", checked: false },
@@ -33,6 +35,7 @@ function Category() {
 
   return (
     <Box>
+      <Label>카테고리 *</Label>
       <CategoryList>
         {categoryList.map((item) => (
           <CategoryItem key={`category_list${item.id}`}>
@@ -70,23 +73,33 @@ const Box = styled.div`
   display: flex;
 `;
 
+const Label = styled.div`
+  padding: 20px;
+  width: 130px;
+  background-color: ${theme.colors.lightGray};
+`;
+
 const CategoryList = styled.div`
   width: 60%;
   height: 200px;
+  padding: 10px;
   overflow-y: scroll;
-  border: 1px solid grey;
+  border: 1px solid ${theme.colors.border1};
   border-radius: 6px;
+  ${scrollbar}
 `;
 const CategoryItem = styled.div`
   display: flex;
-  height: 30px;
+  align-items: center;
 `;
 const SelectedCategoryList = styled.div`
-  border: 1px solid grey;
-  width: 30%;
+  flex: 1 auto;
+  padding: 10px;
+  border: 1px solid ${theme.colors.border1};
   height: 200px;
   overflow-y: scroll;
   border-radius: 6px;
+  ${scrollbar}
 `;
 const SelectedCategory = styled.div`
   height: 30px;

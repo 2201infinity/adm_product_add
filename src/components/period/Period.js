@@ -1,36 +1,36 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-import theme from 'styles/theme';
-import { DateTimePicker } from '../common/DateTimePicker';
-import Radio from '../common/Radio';
+import { useState } from "react";
+import styled from "styled-components";
+import theme from "styles/theme";
+import { DateTimePicker } from "../common/DateTimePicker";
+import Radio from "../common/Radio";
 
 const EXPOSURE_PERIOD = [
   {
     id: 1,
-    value: '제한 없음',
+    value: "제한 없음",
   },
   {
     id: 2,
-    value: '미노출',
+    value: "미노출",
   },
   {
     id: 3,
-    value: '노출 기간 설정',
+    value: "노출 기간 설정",
   },
 ];
 
 const SALES_PERIOD = [
   {
     id: 1,
-    value: '제한 없음',
+    value: "제한 없음",
   },
   {
     id: 2,
-    value: '미판매',
+    value: "미판매",
   },
   {
     id: 3,
-    value: '판매 기간 설정',
+    value: "판매 기간 설정",
   },
 ];
 
@@ -69,7 +69,7 @@ export const ProductPeriod = () => {
             );
           })}
           <DateTimePicker
-            disabled={selectedExposureOption !== '노출 기간 설정'}
+            disabled={selectedExposureOption !== "노출 기간 설정"}
           />
         </Period>
       </PeriodContainer>
@@ -89,7 +89,7 @@ export const ProductPeriod = () => {
               </Radio>
             );
           })}
-          <DateTimePicker disabled={selectedSalesOption !== '판매 기간 설정'} />
+          <DateTimePicker disabled={selectedSalesOption !== "판매 기간 설정"} />
         </Period>
       </PeriodContainer>
     </PeriodSection>
@@ -99,6 +99,7 @@ export const ProductPeriod = () => {
 const PeriodSection = styled.section`
   border: 1.5px solid ${theme.colors.lightPurple};
   font-weight: 600;
+  margin-bottom: 40px;
 `;
 
 const PeriodHeader = styled.h3`
