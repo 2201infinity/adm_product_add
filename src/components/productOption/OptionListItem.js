@@ -13,6 +13,8 @@ function OptionListItem({ optionSetId, optionId }) {
   const productOption = useRecoilValue(productOptionState);
   const [normalPrice, onChangeNormalPrice] = useInput();
   const [salePrice, onChangeSalePrice] = useInput();
+  const [optionName, onChangeOptionName] = useInput();
+  const [productStock, onChangeProductStock] = useInput();
   const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
 
   const option = productOption
@@ -50,6 +52,9 @@ function OptionListItem({ optionSetId, optionId }) {
         width={100}
         height={45}
         placeholder="옵션명을 입력해 주세요. (필수)"
+        type="text"
+        value={optionName}
+        onChange={onChangeOptionName}
       />
 
       <OptionInputGroup>
@@ -80,7 +85,14 @@ function OptionListItem({ optionSetId, optionId }) {
         </OptionInputBox>
 
         <OptionInputBox>
-          <OptionInput width={150} height={45} placeholder="재고 (필수)" />
+          <OptionInput
+            width={150}
+            height={45}
+            type="number"
+            placeholder="재고 (필수)"
+            value={productStock}
+            onChange={onChangeProductStock}
+          />
           <span>개</span>
         </OptionInputBox>
 
@@ -111,6 +123,11 @@ const OptionItemContainer = styled.div`
   margin: 10px 0;
   padding: 16px;
   border-radius: 6px;
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const DeleteButtonBlock = styled.div`
