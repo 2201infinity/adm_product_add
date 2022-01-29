@@ -8,8 +8,10 @@ import CustomButton from "components/common/CustomButton";
 import { scrollbar } from "styles/utilsStyles";
 import ProductInfo from "components/ProductInfo";
 import theme from "styles/theme";
+import ProductImage from "components/common/ProductImage";
 import { useRecoilValue } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
+
 
 function ProductRegisterPage() {
   const productRequired = useRecoilValue(productRequiredInfoState);
@@ -43,6 +45,8 @@ function ProductRegisterPage() {
         <ProductPeriod />
         <ProductInfo />
         <ProductOption />
+        <ProductImage header={"상품 소개 이미지"} id={1} />
+        <ProductImage header={"구매자 추천 이미지"} id={2} />
         <NoticeProductInfo />
         <ProductDelivery />
       </Inner>
