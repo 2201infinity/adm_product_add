@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Toggle from "./common/Toggle";
-import useToggle from "hooks/useToggle";
 import theme from "styles/theme";
 import { DatePickerTemplate } from "./common/DatePicker";
 import styled from "styled-components";
 
 function ProductDelivery() {
-  const { value, onToggle } = useToggle();
-  //   const [isSpecifyDeliveryOn, setSpecifyDeliveryOn] = useToggle();
-  //   const [isPickupOn, setIsPickupOn] = useToggle();
-  //   const [isPreOrderOn, setIsPreOrderOn] = useToggle();
+  const [isToggleList, setIsToggleList] = useState({
+    delivery: false,
+    pickup: false,
+    preOrder: false,
+  });
+
+  const { delivery, pickup, preOrder } = isToggleList;
+
+  const onToggle = (name) => {
+    setIsToggleList({
+      ...isToggleList,
+      [name]: !isToggleList[name],
+    });
+  };
+
+  useEffect(() => {
+    if (delivery || pickup) {
+      setIsToggleList({
+        ...isToggleList,
+        preOrder: false,
+      });
+    }
+    if (preOrder) {
+      setIsToggleList({
+        ...isToggleList,
+        delivery: false,
+        pickup: false,
+      });
+    }
+  }, [delivery, pickup, preOrder]);
 
   return (
     <DeliveryTable>
@@ -25,13 +50,16 @@ function ProductDelivery() {
             출발일 지정
           </th>
           <td>
-            <Toggle checked={value} onChange={onToggle} />
+            <Toggle
+              isChecked={delivery}
+              onChange={() => onToggle("delivery")}
+            />
           </td>
         </tr>
         <tr>
           <th>방문 수령</th>
           <td>
-            <Toggle checked={value} onChange={onToggle} />
+            <Toggle isChecked={pickup} onChange={() => onToggle("pickup")} />
           </td>
         </tr>
         <tr>
@@ -39,7 +67,10 @@ function ProductDelivery() {
             선 주문 <br /> 예약 배송
           </th>
           <td>
-            <Toggle checked={value} onChange={onToggle} />
+            <Toggle
+              isChecked={preOrder}
+              onChange={() => onToggle("preOrder")}
+            />
             <DatePickerTemplate />
           </td>
         </tr>
@@ -54,6 +85,7 @@ const DeliveryTable = styled.table`
   border: 1px solid ${theme.colors.lightPurple};
   border-collapse: collapse;
   text-align: left;
+  vertical-align: middle;
   margin-top: auto;
   margin-bottom: auto;
 
