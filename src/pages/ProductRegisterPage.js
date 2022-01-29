@@ -1,5 +1,5 @@
 import ProductOption from "components/productOption";
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import NoticeProductInfo from "components/NoticeProductInfo";
 import ProductDelivery from "components/delivery/ProductDelivery";
@@ -12,7 +12,6 @@ import theme from "styles/theme";
 import ProductImage from "components/common/ProductImage";
 import { useRecoilValue } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
-
 
 function ProductRegisterPage() {
   const productRequired = useRecoilValue(productRequiredInfoState);
