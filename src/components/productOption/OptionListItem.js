@@ -4,7 +4,7 @@ import CustomButton from "components/common/CustomButton";
 import Input from "components/common/Input";
 import produce from "immer";
 import { v4 as uuidv4 } from "uuid";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
@@ -68,6 +68,29 @@ function OptionListItem({ optionSetId, optionId }) {
     );
   };
 
+  const [normalPrice, setNormalPrice] = useState();
+  const [salePrice, setSalePrice] = useState();
+
+  const onChangeNormalPrice = (e) => {
+    setNormalPrice(e.target.value);
+  };
+
+  const onChangeSalePrice = (e) => {
+    setSalePrice(e.target.value);
+  };
+
+  const discountRate = useMemo(
+    () => Math.floor(((normalPrice - salePrice) / normalPrice) * 100),
+    [normalPrice, salePrice]
+  );
+
+  const discountRateElement = () => {
+    if (Number(salePrice) >= Number(normalPrice) || !salePrice)
+      return <>없음</>;
+
+    return <>{discountRate}%</>;
+  };
+
   return (
     <OptionItemContainer>
       <DeleteButtonBlock>
@@ -93,17 +116,23 @@ function OptionListItem({ optionSetId, optionId }) {
             width={150}
             height={45}
             placeholder="상품 정상가 (필수)"
+            type="number"
+            value={normalPrice}
+            onChange={onChangeNormalPrice}
           />
           <span>원</span>
         </OptionInputBox>
 
-        <DiscountRateText>할인율 %</DiscountRateText>
+        <DiscountRateText>할인율: {discountRateElement()}</DiscountRateText>
 
         <OptionInputBox>
           <OptionInput
             width={150}
             height={45}
             placeholder="상품 판매가 (필수)"
+            type="number"
+            value={salePrice}
+            onChange={onChangeSalePrice}
           />
           <span>원</span>
         </OptionInputBox>
@@ -173,6 +202,7 @@ const OptionInput = styled(Input)`
 const DiscountRateText = styled.span`
   font-size: 14px;
   height: 18px;
+  color: #7b7676;
 `;
 
 const SelectBox = styled.select`

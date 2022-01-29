@@ -1,10 +1,7 @@
-import {
-  productOptionState,
-  useProductOptionSetItemState,
-} from "atoms/productOption";
+import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import React from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import produce from "immer";
