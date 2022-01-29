@@ -71,7 +71,6 @@ function Category() {
         ))}
       </CategoryList>
       <SelectedCategoryList>
-        <BeforeSelectCategory>카테고리를 지정해 주세요.</BeforeSelectCategory>
         {categoryList.map((item) => (
           <React.Fragment key={`selected_category_list${item.id}`}>
             {item.checked && (
@@ -131,7 +130,5 @@ const SelectedCategory = styled.div`
   border-radius: 5px;
   border: 1px solid #3f51b5;
 `;
-
-const BeforeSelectCategory = styled.div``;
 
 export default Category;
