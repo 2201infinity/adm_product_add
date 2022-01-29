@@ -103,7 +103,7 @@ const ImageAttachButton = styled.label`
   color: transparent;
   text-shadow: 0 0 0 black;
   text-align: center;
-  margin 8px 0;
+  margin: 8px 0;
 `;
 
 const Input = styled.input`
