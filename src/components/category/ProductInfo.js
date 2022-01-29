@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import theme from "styles/theme";
-import Category from "./category/Category";
-import FilterTag from "./category/FilterTag";
-import ProductNameImage from "./category/ProductNameImage";
+import Category from "./Category";
+import FilterTag from "./FilterTag";
+import ProductNameImage from "./ProductNameImage";
 
 function ProductInfo() {
   return (

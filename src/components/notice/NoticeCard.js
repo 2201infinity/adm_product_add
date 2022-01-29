@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Input from "components/common/Input";
-import CustomButton from "./common/CustomButton";
+import CustomButton from "../common/CustomButton";
 import useForm from "hooks/useForm";
 
 const noticeDocs = [

@@ -1,30 +1,34 @@
 import ProductOption from "components/productOption";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import NoticeProductInfo from "components/NoticeProductInfo";
+import NoticeProductInfo from "components/notice/NoticeProductInfo";
 import ProductDelivery from "components/delivery/ProductDelivery";
-import Benefit from "components/Benefit";
+import Benefit from "components/delivery/Benefit";
 import { ProductPeriod } from "components/period/Period";
 import CustomButton from "components/common/CustomButton";
 import { scrollbar } from "styles/utilsStyles";
-import ProductInfo from "components/ProductInfo";
+import ProductInfo from "components/category/ProductInfo";
 import theme from "styles/theme";
 import ProductImage from "components/common/ProductImage";
 import { useRecoilValue } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
 import { productRegisterFormState } from "atoms/productRegisterForm";
+import useToggle from "hooks/useToggle";
+import AlertModal from "components/common/AlertModal";
 
 function ProductRegisterPage() {
   const productRequired = useRecoilValue(productRequiredInfoState);
   const productRegisterForm = useRecoilValue(productRegisterFormState);
+  const [isAlert, onToggleAlert] = useToggle();
 
   const { productCategory, productInfo, productOption } = productRequired;
 
   const onRegisterProduct = () => {
     if (productOption && productInfo && productCategory) {
       alert("상품 등록이 완료되었습니다.");
+      console.log(productRegisterForm);
     } else {
-      alert("필수값을 모두 입력해 주세요.");
+      onToggleAlert();
     }
   };
 
@@ -33,29 +37,38 @@ function ProductRegisterPage() {
   }, [productRegisterForm]);
 
   return (
-    <ProductRegisterPageContainer>
-      <ProductRegisterHeader>
-        <HeaderText>상품 등록</HeaderText>
-        <CustomButton
-          variant="primary"
-          width={100}
-          height={30}
-          onClick={onRegisterProduct}
-        >
-          저장하기
-        </CustomButton>
-      </ProductRegisterHeader>
-      <Inner>
-        <ProductPeriod />
-        <ProductInfo />
-        <ProductOption />
-        <ProductImage header={"상품 소개 이미지"} id={1} />
-        <ProductImage header={"구매자 추천 이미지"} id={2} />
-        <NoticeProductInfo />
-        <ProductDelivery />
-        <Benefit />
-      </Inner>
-    </ProductRegisterPageContainer>
+    <>
+      <ProductRegisterPageContainer>
+        <ProductRegisterHeader>
+          <HeaderText>상품 등록</HeaderText>
+          <CustomButton
+            variant="primary"
+            width={100}
+            height={30}
+            onClick={onRegisterProduct}
+          >
+            저장하기
+          </CustomButton>
+        </ProductRegisterHeader>
+        <Inner>
+          <ProductPeriod />
+          <ProductInfo />
+          <ProductOption />
+          <ProductImage header={"상품 소개 이미지"} id={1} />
+          <ProductImage header={"구매자 추천 이미지"} id={2} />
+          <NoticeProductInfo />
+          <ProductDelivery />
+          <Benefit />
+        </Inner>
+      </ProductRegisterPageContainer>
+      {isAlert && (
+        <AlertModal
+          isModal={isAlert}
+          onToggleModal={onToggleAlert}
+          message="필수값을 모두 입력해 주세요."
+        />
+      )}
+    </>
   );
 }
 

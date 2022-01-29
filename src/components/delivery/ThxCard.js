@@ -1,6 +1,6 @@
 import React from "react";
-import OptionName from "./delivery/OptionName";
-import OptionContent from "./delivery/OptionContent";
+import OptionName from "./OptionName";
+import OptionContent from "./OptionContent";
 import Toggle from "components/common/Toggle";
 import styled from "styled-components";
 
