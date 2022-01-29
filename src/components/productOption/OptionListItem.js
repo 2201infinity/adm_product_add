@@ -1,13 +1,14 @@
 import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import Input from "components/common/Input";
-import React, { useMemo } from "react";
-import { useRecoilValue } from "recoil";
+import React, { useEffect, useMemo } from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
 import AdditionalOptionList from "./AdditionalOptionList";
 import useProductOption from "hooks/useProductOption";
 import useInput from "hooks/useInput";
+import { productRequiredInfoState } from "atoms/productRequiredInfo";
 
 function OptionListItem({ optionSetId, optionId }) {
   const productOption = useRecoilValue(productOptionState);
@@ -16,6 +17,7 @@ function OptionListItem({ optionSetId, optionId }) {
   const [optionName, onChangeOptionName] = useInput();
   const [productStock, onChangeProductStock] = useInput();
   const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
+  const setProductRequried = useSetRecoilState(productRequiredInfoState);
 
   const option = productOption
     .filter((option) => option.id === optionSetId)
@@ -34,6 +36,27 @@ function OptionListItem({ optionSetId, optionId }) {
 
     return <>{discountRate}%</>;
   };
+
+  useEffect(() => {
+    if (
+      productOption.length === 0 ||
+      optionName.length === 0 ||
+      !normalPrice ||
+      !salePrice ||
+      !productStock
+    ) {
+      setProductRequried((prev) => ({ ...prev, productOption: false }));
+    } else {
+      setProductRequried((prev) => ({ ...prev, productOption: true }));
+    }
+  }, [
+    productOption,
+    setProductRequried,
+    optionName,
+    normalPrice,
+    salePrice,
+    productStock,
+  ]);
 
   return (
     <OptionItemContainer>
