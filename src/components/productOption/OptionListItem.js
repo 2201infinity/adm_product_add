@@ -107,7 +107,11 @@ function OptionListItem({ optionSetId, optionId }) {
         </SelectBox>
       </OptionInputGroup>
 
-      <AdditionalOptionList additionalOptionList={additionalOptionList} />
+      <AdditionalOptionList
+        additionalOptionList={additionalOptionList}
+        optionSetId={optionSetId}
+        optionId={optionId}
+      />
 
       <CreateAdditionalOptionButton onClick={onCreateAdditionalOption}>
         추가 옵션 상품 추가
