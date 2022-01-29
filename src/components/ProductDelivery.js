@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Toggle from "./common/Toggle";
 import theme from "styles/theme";
 import { DatePickerTemplate } from "./common/DatePicker";
+import { DateTimePicker } from "./common/DateTimePicker";
 import styled from "styled-components";
 
 function ProductDelivery() {
@@ -37,61 +38,40 @@ function ProductDelivery() {
   }, [delivery, pickup, preOrder]);
 
   return (
-    <DeliveryTable>
-      <thead>
-        <tr>
-          <th colSpan="2">상품 배송 설정</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
+    <>
+      <div>
+        <OptionWrapper>
+          <p>
             사용자 배송일 <br />
             출발일 지정
-          </th>
-          <td>
-            <Toggle
-              isChecked={delivery}
-              onChange={() => onToggle("delivery")}
-            />
-          </td>
-        </tr>
-        <tr>
-          <th>방문 수령</th>
-          <td>
-            <Toggle isChecked={pickup} onChange={() => onToggle("pickup")} />
-          </td>
-        </tr>
-        <tr>
-          <th>
+          </p>
+          <Toggle isChecked={delivery} onChange={() => onToggle("delivery")} />
+        </OptionWrapper>
+        <OptionWrapper>
+          <p>방문 수령</p>
+          <Toggle isChecked={pickup} onChange={() => onToggle("pickup")} />
+        </OptionWrapper>
+        <PreOrderWrapper>
+          <p>
             선 주문 <br /> 예약 배송
-          </th>
-          <td>
-            <Toggle
-              isChecked={preOrder}
-              onChange={() => onToggle("preOrder")}
-            />
-            <DatePickerTemplate />
-          </td>
-        </tr>
-      </tbody>
-    </DeliveryTable>
+          </p>
+          <Toggle isChecked={preOrder} onChange={() => onToggle("preOrder")} />
+          <p>주문 시간</p>
+          <DateTimePicker />
+          <p>새벽 배송</p>
+          <DatePickerTemplate />
+          <p>일반 배송</p>
+          <DatePickerTemplate />
+        </PreOrderWrapper>
+      </div>
+    </>
   );
 }
 
 export default ProductDelivery;
 
-const DeliveryTable = styled.table`
-  border: 1px solid ${theme.colors.lightPurple};
-  border-collapse: collapse;
-  text-align: left;
-  vertical-align: middle;
-  margin-top: auto;
-  margin-bottom: auto;
-
-  th,
-  td {
-    border: 1px solid ${theme.colors.lightPurple};
-    padding: 10px;
-  }
+const OptionWrapper = styled.div`
+  display: flex;
 `;
+
+const PreOrderWrapper = styled.div``;
