@@ -1,13 +1,15 @@
 import ProductOption from "components/productOption";
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import NoticeProductInfo from "components/NoticeProductInfo";
 import ProductDelivery from "components/delivery/ProductDelivery";
+import Benefit from "components/Benefit";
 import { ProductPeriod } from "components/period/Period";
 import CustomButton from "components/common/CustomButton";
 import { scrollbar } from "styles/utilsStyles";
 import ProductInfo from "components/ProductInfo";
 import theme from "styles/theme";
+import ProductImage from "components/common/ProductImage";
 import { useRecoilValue } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
 
@@ -41,8 +43,11 @@ function ProductRegisterPage() {
         <ProductPeriod />
         <ProductInfo />
         <ProductOption />
+        <ProductImage header={"상품 소개 이미지"} id={1} />
+        <ProductImage header={"구매자 추천 이미지"} id={2} />
         <NoticeProductInfo />
         <ProductDelivery />
+        <Benefit />
       </Inner>
     </ProductRegisterPageContainer>
   );
