@@ -103,6 +103,7 @@ const ImageAttachButton = styled.label`
   color: transparent;
   text-shadow: 0 0 0 black;
   text-align: center;
+  margin 8px 0;
 `;
 
 const Input = styled.input`
@@ -120,7 +121,7 @@ const RemoveButton = styled.button`
 `;
 
 const FileName = styled.span`
-  margin: 10px 20px;
+  margin: 15px 20px;
   color: transparent;
   text-shadow: 0 0 0 black;
   display: inline-block;

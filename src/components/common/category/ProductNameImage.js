@@ -20,7 +20,7 @@ function ProductNameImage() {
         <ProductNameBox>
           <LabelInputBlock>
             <Label>상품명*</Label>
-            <Input
+            <InputCont
               onChange={(e) => setName(e.target.value)}
               width="600"
               placeholder="상품명을 입력해 주세요."
@@ -28,13 +28,13 @@ function ProductNameImage() {
           </LabelInputBlock>
           <LabelInputBlock>
             <Label>상품코드*</Label>
-            <span>1904858</span>
+            <Span>1904858</Span>
           </LabelInputBlock>
         </ProductNameBox>
       </InputBox>
       <LabelInputBlock>
         <Label>상품 구성 소개 정보</Label>
-        <Input
+        <InputCont
           onChange={(e) => setInfo(e.target.value)}
           width="600"
           placeholder="상품 구성 소개 정보를 입력해 주세요."
@@ -58,7 +58,7 @@ function ProductNameImage() {
       </LabelInputBlock>
       <LabelInputBlock>
         <Label>상품 총 재고</Label>
-        <span> 41 개</span>
+        <Span> 41 개</Span>
       </LabelInputBlock>
     </>
   );
@@ -68,8 +68,8 @@ export default ProductNameImage;
 
 const LabelInputBlock = styled.div`
   display: flex;
-  align-items: center;
-  height: 80px;
+  // align-items: center;
+  // height: 80px;
   border-bottom: 1px solid ${theme.colors.border1};
 `;
 
@@ -78,14 +78,25 @@ const ProductNameBox = styled.div`
 `;
 
 const Label = styled.div`
-  height: 100%;
+  // height: 100%;
   width: 130px;
   display: flex;
   align-items: center;
-  padding: 0px 8px;
+  padding:  8px;
   background-color: ${theme.colors.lightGray};
 `;
 
 const InputBox = styled.div`
   width: 100;
+  
 `;
+
+const InputCont = styled(Input)`
+  margin: 8px 0 8px 8px;
+`
+
+const Span = styled.span`
+  display: flex;
+  align-items:center;
+  margin-left: 8px;
+`
