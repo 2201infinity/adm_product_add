@@ -1,8 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import theme from 'styles/theme';
+import { useCallback, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import theme from "styles/theme";
 
-export const ImageNameButton = ({ inputId, isMultiple }) => {
+export const ImageNameButton = ({
+  inputId,
+  isMultiple,
+  onChangeProductImage,
+}) => {
   const [imageFileNames, setImageFileNames] = useState([]);
   const [isAttached, setIsAttached] = useState(false);
   const [isShow, setIsShow] = useState(true);
@@ -13,25 +17,33 @@ export const ImageNameButton = ({ inputId, isMultiple }) => {
       const attachedImageFileName = e.target.files[0].name;
       setIsAttached(true);
       setIsShow(true);
-      if (isMultiple)
+      if (isMultiple) {
         setImageFileNames([...imageFileNames, attachedImageFileName]);
-      else setImageFileNames(attachedImageFileName);
+        onChangeProductImage([...imageFileNames, attachedImageFileName]);
+      } else {
+        setImageFileNames(attachedImageFileName);
+        onChangeProductImage(attachedImageFileName);
+      }
     },
-    [imageFileNames, isMultiple]
+    [imageFileNames, isMultiple, onChangeProductImage]
   );
 
   const onClickRemoveButton = (e) => {
-    inputValue.current.value = '';
+    inputValue.current.value = "";
     setIsShow(false);
-    isMultiple &&
+    if (isMultiple) {
       setImageFileNames(
         imageFileNames.filter((name) => name !== e.target.value)
       );
+      onChangeProductImage(
+        imageFileNames.filter((name) => name !== e.target.value)
+      );
+    }
   };
 
-  useEffect(() => {
-    console.log(imageFileNames);
-  }, [imageFileNames]);
+  // useEffect(() => {
+  //   console.log(imageFileNames);
+  // }, [imageFileNames]);
 
   return (
     <Container>

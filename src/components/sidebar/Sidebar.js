@@ -48,7 +48,7 @@ const Logo = styled.h2`
 `;
 
 const SidebarContainer = styled.aside`
-  width: 150px;
+  min-width: 150px;
   border-right: 1.5px solid ${theme.colors.lightPurple};
   font-weight: 600;
   font-size: 14px;
