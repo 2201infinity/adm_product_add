@@ -22,7 +22,7 @@ const StyledButton = styled.button`
 
   &:active,
   &:hover {
-    background: var(--button-hover-bg-color, #000080);
+    background: var(--button-hover-bg-color, #e8eaf6);
   }
 
   &:disabled {
