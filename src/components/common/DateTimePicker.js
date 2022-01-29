@@ -1,18 +1,24 @@
-import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import styled from 'styled-components';
-import theme from 'styles/theme';
+import { useState, useEffect } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
+import theme from "styles/theme";
 
-export const DateTimePicker = ({ ...rest }) => {
+export const DateTimePicker = ({ onChangeOrderEndTime, ...rest }) => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  const onChangeDate = (date) => {
+    setStartDate(date);
+    onChangeOrderEndTime(date);
+  };
+
   return (
     <DatePickerContainer>
       <DatePickerInput
         {...rest}
         selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        onChange={onChangeDate}
         selectsStart
         startDate={startDate}
         endDate={endDate}
@@ -61,7 +67,7 @@ const Span = styled.span`
     display: block;
     left: 185px;
     bottom: 7px;
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-left: 1px solid black;
@@ -74,7 +80,7 @@ const Span = styled.span`
     display: block;
     right: 35px;
     bottom: 7px;
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-left: 1px solid black;

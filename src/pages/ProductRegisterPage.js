@@ -1,7 +1,7 @@
 import ProductOption from "components/ProductOption";
 import React from "react";
 import styled from "styled-components";
-import ProductDelivery from "components/ProductDelivery";
+import ProductDelivery from "components/delivery/ProductDelivery";
 
 function ProductRegisterPage() {
   return (
