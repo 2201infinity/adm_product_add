@@ -54,8 +54,7 @@ function ProductRegisterPage() {
           <ProductPeriod />
           <ProductInfo />
           <ProductOption />
-          <ProductImage header={"상품 소개 이미지"} id={1} />
-          <ProductImage header={"구매자 추천 이미지"} id={2} />
+          <ProductImage />
           <NoticeProductInfo />
           <ProductDelivery />
           <Benefit />
