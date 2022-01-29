@@ -22,7 +22,9 @@ export default function ImagePreviewButton({ id }) {
 
   return (
     <Container>
-      <ImageAttachButton htmlFor={id}>+ 이미지 첨부</ImageAttachButton>
+      {!loadedImageSrc && (
+        <ImageAttachButton htmlFor={id}>+ 이미지 첨부</ImageAttachButton>
+      )}
       <Input ref={inputValue} type="file" id={id} onChange={onLoadImage} />
       {loadedImageSrc && (
         <>
@@ -79,4 +81,5 @@ const RemoveButton = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 `;
