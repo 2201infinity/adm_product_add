@@ -1,35 +1,11 @@
-import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
+import useProductOption from "hooks/useProductOption";
 
 function ProductOptionTitle() {
-  const setProductOption = useSetRecoilState(productOptionState);
-
-  const onCreateOptionSet = () => {
-    setProductOption((prevOptions) => [
-      ...prevOptions,
-      {
-        id: uuidv4(),
-        img: "",
-        options: [
-          {
-            id: uuidv4(),
-            name: "",
-            normalPrice: 0,
-            salePrice: 0,
-            stock: 0,
-            tax: "",
-            additionalOptions: [],
-          },
-        ],
-      },
-    ]);
-  };
-
+  const { onCreateOptionSet } = useProductOption();
   return (
     <OptionTitle>
       <TitleText>상품 옵션*</TitleText>
