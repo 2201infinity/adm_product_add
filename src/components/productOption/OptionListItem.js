@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
 import AdditionalOptionList from "./AdditionalOptionList";
+import useProductOption from "hooks/useProductOption";
 
 function OptionListItem({ optionSetId, optionId }) {
   const [productOption, setProductOption] = useRecoilState(productOptionState);
@@ -20,53 +21,7 @@ function OptionListItem({ optionSetId, optionId }) {
 
   const additionalOptionList = option[0][0].additionalOptions;
 
-  const onDeleteOption = () => {
-    // 옵션이 1개면 해당 옵션세트 자체를 지워주기
-    const optionLength = productOption.filter(
-      (option) => option.id === optionSetId
-    )[0].options.length;
-
-    if (optionLength === 1) {
-      setProductOption((prevOptions) =>
-        prevOptions.filter(({ id }) => id !== optionSetId)
-      );
-      return;
-    }
-
-    setProductOption((prevOptions) =>
-      produce(prevOptions, (draft) => {
-        for (let i = 0; i < draft.length; i++) {
-          if (draft[i].id === optionSetId) {
-            draft[i].options = draft[i].options.filter(
-              (item) => item.id !== optionId
-            );
-            break;
-          }
-        }
-      })
-    );
-  };
-
-  const onCreateAdditionalOption = () => {
-    setProductOption((prevOptions) =>
-      produce(prevOptions, (draft) => {
-        for (let i = 0; i < draft.length; i++) {
-          if (draft[i].id === optionSetId) {
-            draft[i].options.map((item) => {
-              if (item.id === optionId) {
-                item.additionalOptions.push({
-                  id: uuidv4(),
-                  additionalName: "",
-                  additionalNormalPrice: 0,
-                });
-              }
-            });
-            break;
-          }
-        }
-      })
-    );
-  };
+  const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
 
   const [normalPrice, setNormalPrice] = useState();
   const [salePrice, setSalePrice] = useState();
@@ -98,7 +53,7 @@ function OptionListItem({ optionSetId, optionId }) {
           width={65}
           height={35}
           variant="tertiary"
-          onClick={onDeleteOption}
+          onClick={() => onDeleteOption(optionSetId, optionId)}
         >
           삭제
         </CustomButton>
@@ -154,7 +109,9 @@ function OptionListItem({ optionSetId, optionId }) {
         optionId={optionId}
       />
 
-      <CreateAdditionalOptionButton onClick={onCreateAdditionalOption}>
+      <CreateAdditionalOptionButton
+        onClick={() => onCreateAdditionalOption(optionSetId, optionId)}
+      >
         추가 옵션 상품 추가
       </CreateAdditionalOptionButton>
     </OptionItemContainer>

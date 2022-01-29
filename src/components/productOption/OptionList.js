@@ -2,35 +2,14 @@ import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import React from "react";
 import { useRecoilState } from "recoil";
-import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
-import produce from "immer";
 import OptionListItem from "./OptionListItem";
+import useProductOption from "hooks/useProductOption";
 
 function OptionList({ optionSetId }) {
   const [productOption, setProductOption] = useRecoilState(productOptionState);
   const option = productOption.filter((option) => option.id === optionSetId);
-
-  const onCreateOption = () => {
-    setProductOption((prevOptions) =>
-      produce(prevOptions, (draft) => {
-        for (let i = 0; i < draft.length; i++) {
-          if (draft[i].id === optionSetId) {
-            draft[i].options.push({
-              id: uuidv4(),
-              name: "",
-              normalPrice: 0,
-              salePrice: 0,
-              stock: 0,
-              tax: "",
-              additionalOptions: [],
-            });
-            break;
-          }
-        }
-      })
-    );
-  };
+  const { onCreateOption } = useProductOption();
 
   return (
     <OptionListContainer>
@@ -46,7 +25,7 @@ function OptionList({ optionSetId }) {
         width={80}
         height={45}
         variant="secondary"
-        onClick={onCreateOption}
+        onClick={() => onCreateOption(optionSetId)}
       >
         옵션 추가
       </CreateOptionButton>
