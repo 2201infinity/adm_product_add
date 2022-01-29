@@ -69,7 +69,7 @@ export default ProductNameImage;
 const LabelInputBlock = styled.div`
   display: flex;
   align-items: center;
-  height: 80px;
+  min-height: 80px;
   border-bottom: 1px solid ${theme.colors.border1};
 `;
 

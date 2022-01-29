@@ -1,5 +1,5 @@
 import ProductOption from "components/productOption";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import NoticeProductInfo from "components/NoticeProductInfo";
 import ProductDelivery from "components/delivery/ProductDelivery";
@@ -8,8 +8,16 @@ import CustomButton from "components/common/CustomButton";
 import { scrollbar } from "styles/utilsStyles";
 import ProductInfo from "components/ProductInfo";
 import theme from "styles/theme";
+import { useRecoilValue } from "recoil";
+import { productRequiredInfoState } from "atoms/productRequiredInfo";
 
 function ProductRegisterPage() {
+  const productRequired = useRecoilValue(productRequiredInfoState);
+
+  useEffect(() => {
+    console.log("productRequired", productRequired);
+  }, [productRequired]);
+
   return (
     <ProductRegisterPageContainer>
       <ProductRegisterHeader>
