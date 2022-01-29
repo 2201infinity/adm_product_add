@@ -15,6 +15,8 @@ function OptionSetListItem({ optionSetId }) {
     );
   };
 
+  console.log(optionSetId);
+
   return (
     <OptionSetItemContainer>
       <DeleteButtonBlock>
@@ -29,7 +31,7 @@ function OptionSetListItem({ optionSetId }) {
       </DeleteButtonBlock>
 
       <InnerItem>
-        <ImagePreviewButton />
+        <ImagePreviewButton id={optionSetId} />
         <OptionList optionSetId={optionSetId} />
       </InnerItem>
     </OptionSetItemContainer>

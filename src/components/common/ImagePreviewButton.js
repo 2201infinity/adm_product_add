@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import theme from "styles/theme";
 
-export default function ImagePreviewButton() {
+export default function ImagePreviewButton({ id }) {
   const [loadedImageSrc, setLoadedImageSrc] = useState("");
   const inputValue = useRef(null);
 
@@ -12,23 +12,18 @@ export default function ImagePreviewButton() {
       alert("이미지 파일이 아닙니다.");
       return;
     }
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    return new Promise((resolve) => {
-      reader.onload = () => {
-        setLoadedImageSrc(reader.result);
-        resolve();
-      };
-    });
+    setLoadedImageSrc(URL.createObjectURL(file));
   };
   const onClickRemoveButton = () => {
     inputValue.current.value = "";
     setLoadedImageSrc("");
+    URL.revokeObjectURL(loadedImageSrc);
   };
+
   return (
     <Container>
-      <ImageAttachButton htmlFor="img">+ 이미지 첨부</ImageAttachButton>
-      <Input ref={inputValue} type="file" id="img" onChange={onLoadImage} />
+      <ImageAttachButton htmlFor={id}>+ 이미지 첨부</ImageAttachButton>
+      <Input ref={inputValue} type="file" id={id} onChange={onLoadImage} />
       {loadedImageSrc && (
         <>
           <ImagePreview src={loadedImageSrc} alt="preview" />
