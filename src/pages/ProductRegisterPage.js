@@ -1,4 +1,4 @@
-import ProductOption from "components/ProductOption";
+import ProductOption from "components/productOption";
 import React from "react";
 import styled from "styled-components";
 import CategoryPage from "./CategoryPage";
