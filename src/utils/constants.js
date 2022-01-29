@@ -1,0 +1,32 @@
+export const categoryListData = [
+  { id: "0", name: "category0", checked: false },
+  { id: "1", name: "category1", checked: false },
+  { id: "2", name: "category2", checked: false },
+  { id: "3", name: "category3", checked: false },
+  { id: "4", name: "category4", checked: false },
+  { id: "5", name: "category5", checked: false },
+  { id: "6", name: "category6", checked: false },
+  { id: "7", name: "category7", checked: false },
+  { id: "8", name: "category8", checked: false },
+  { id: "9", name: "category9", checked: false },
+  { id: "10", name: "category10", checked: false },
+];
+
+export const filterTagData = [
+  { id: "0", name: "베스트", checked: false },
+  { id: "1", name: "베나라", checked: false },
+  { id: "2", name: "베베", checked: false },
+  { id: "3", name: "한우", checked: false },
+  { id: "4", name: "베이비", checked: false },
+  { id: "5", name: "국내산", checked: false },
+  { id: "6", name: "차돌박이", checked: false },
+  { id: "7", name: "명품", checked: false },
+  { id: "8", name: "일등급", checked: false },
+  { id: "9", name: "선물세트", checked: false },
+  { id: "10", name: "소고기", checked: false },
+  { id: "11", name: "선물세트", checked: false },
+  { id: "12", name: "소고기", checked: false },
+  { id: "13", name: "소고기", checked: false },
+  { id: "14", name: "선물세트", checked: false },
+  { id: "15", name: "소고기", checked: false },
+];

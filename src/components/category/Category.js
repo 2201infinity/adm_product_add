@@ -7,23 +7,10 @@ import { scrollbar } from "styles/utilsStyles";
 import { useSetRecoilState } from "recoil";
 import { productRequiredInfoState } from "atoms/productRequiredInfo";
 import { productRegisterFormState } from "atoms/productRegisterForm";
-
-const data = [
-  { id: "0", name: "category0", checked: false },
-  { id: "1", name: "category1", checked: false },
-  { id: "2", name: "category2", checked: false },
-  { id: "3", name: "category3", checked: false },
-  { id: "4", name: "category4", checked: false },
-  { id: "5", name: "category5", checked: false },
-  { id: "6", name: "category6", checked: false },
-  { id: "7", name: "category7", checked: false },
-  { id: "8", name: "category8", checked: false },
-  { id: "9", name: "category9", checked: false },
-  { id: "10", name: "category10", checked: false },
-];
+import { categoryListData } from "utils/constants";
 
 function Category() {
-  const [categoryList, setCategoryList] = useState(data);
+  const [categoryList, setCategoryList] = useState(categoryListData);
   const setProductRequried = useSetRecoilState(productRequiredInfoState);
   const setProductForm = useSetRecoilState(productRegisterFormState);
 

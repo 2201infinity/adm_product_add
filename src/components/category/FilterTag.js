@@ -6,28 +6,10 @@ import Button from "components/common/Button";
 import theme from "styles/theme";
 import { productRegisterFormState } from "atoms/productRegisterForm";
 import { useSetRecoilState } from "recoil";
-
-const tags = [
-  { id: "0", name: "베스트", checked: false },
-  { id: "1", name: "베나라", checked: false },
-  { id: "2", name: "베베", checked: false },
-  { id: "3", name: "한우", checked: false },
-  { id: "4", name: "베이비", checked: false },
-  { id: "5", name: "국내산", checked: false },
-  { id: "6", name: "차돌박이", checked: false },
-  { id: "7", name: "명품", checked: false },
-  { id: "8", name: "일등급", checked: false },
-  { id: "9", name: "선물세트", checked: false },
-  { id: "10", name: "소고기", checked: false },
-  { id: "11", name: "선물세트", checked: false },
-  { id: "12", name: "소고기", checked: false },
-  { id: "13", name: "소고기", checked: false },
-  { id: "14", name: "선물세트", checked: false },
-  { id: "15", name: "소고기", checked: false },
-];
+import { filterTagData } from "utils/constants";
 
 function FilterTag() {
-  const [tagList, setTagList] = useState(tags);
+  const [tagList, setTagList] = useState(filterTagData);
   const setProductForm = useSetRecoilState(productRegisterFormState);
   const [focusOn, setFocusOn] = useState(false);
   const [query, setQuery] = useState("");
@@ -51,7 +33,7 @@ function FilterTag() {
   };
 
   useEffect(() => {
-    filterItems(tags, query);
+    filterItems(filterTagData, query);
   }, [query]);
 
   const filterItems = (items, query) => {
