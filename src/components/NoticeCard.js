@@ -54,7 +54,6 @@ function ProductInfo({ cardNumber, itemId, onDeleteCard, ...rest }) {
   });
 
   const [inputList, setInputList] = useState(noticeDocs);
-  const [formList, setFormList] = useState([]);
 
   const onDeleteCategory = (id) => {
     setInputList((prev) => prev.filter((item) => item.id !== id));
