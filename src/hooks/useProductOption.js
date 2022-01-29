@@ -6,11 +6,11 @@ import { useRecoilState } from "recoil";
 import { v4 as uuidv4 } from "uuid";
 
 export default function useProductOption() {
-  const [productOption, setProductOption] = useRecoilState(productOptionState);
+  const [productOption, set] = useRecoilState(productOptionState);
 
   // @Note 옵션 세트 추가
   const onCreateOptionSet = useCallback(() => {
-    setProductOption((prevOptions) => [
+    set((prevOptions) => [
       ...prevOptions,
       {
         id: uuidv4(),
@@ -28,22 +28,22 @@ export default function useProductOption() {
         ],
       },
     ]);
-  }, [setProductOption]);
+  }, [set]);
 
   // @Note 옵션 세트 삭제
   const onDeleteOptionSet = useCallback(
     (optionSetId) => {
-      setProductOption((prevOptions) =>
+      set((prevOptions) =>
         prevOptions.filter((option) => option.id !== optionSetId)
       );
     },
-    [setProductOption]
+    [set]
   );
 
   // @Note 옵션 추가
   const onCreateOption = useCallback(
     (optionSetId) => {
-      setProductOption((prevOptions) =>
+      set((prevOptions) =>
         produce(prevOptions, (draft) => {
           for (let i = 0; i < draft.length; i++) {
             if (draft[i].id === optionSetId) {
@@ -62,7 +62,7 @@ export default function useProductOption() {
         })
       );
     },
-    [setProductOption]
+    [set]
   );
 
   // @Note 옵션 삭제 (옵션이 1개면 해당 옵션 세트 자체를 지워주기)
@@ -73,13 +73,13 @@ export default function useProductOption() {
       )[0].options.length;
 
       if (optionLength === 1) {
-        setProductOption((prevOptions) =>
+        set((prevOptions) =>
           prevOptions.filter(({ id }) => id !== optionSetId)
         );
         return;
       }
 
-      setProductOption((prevOptions) =>
+      set((prevOptions) =>
         produce(prevOptions, (draft) => {
           for (let i = 0; i < draft.length; i++) {
             if (draft[i].id === optionSetId) {
@@ -92,13 +92,13 @@ export default function useProductOption() {
         })
       );
     },
-    [productOption, setProductOption]
+    [productOption, set]
   );
 
   // @Note 추가 옵션 생성
   const onCreateAdditionalOption = useCallback(
     (optionSetId, optionId) => {
-      setProductOption((prevOptions) =>
+      set((prevOptions) =>
         produce(prevOptions, (draft) => {
           for (let i = 0; i < draft.length; i++) {
             if (draft[i].id === optionSetId) {
@@ -117,13 +117,13 @@ export default function useProductOption() {
         })
       );
     },
-    [setProductOption]
+    [set]
   );
 
   // @Note 추가 옵션 상품 삭제
   const onDeleteAdditionalOption = useCallback(
     (optionSetId, optionId, additionalOptionId) => {
-      setProductOption((prevOptions) =>
+      set((prevOptions) =>
         produce(prevOptions, (draft) => {
           for (let i = 0; i < draft.length; i++) {
             if (draft[i].id === optionSetId) {
@@ -141,7 +141,7 @@ export default function useProductOption() {
         })
       );
     },
-    [setProductOption]
+    [set]
   );
 
   return {

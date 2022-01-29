@@ -1,13 +1,13 @@
 import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import React from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import OptionListItem from "./OptionListItem";
 import useProductOption from "hooks/useProductOption";
 
 function OptionList({ optionSetId }) {
-  const [productOption, setProductOption] = useRecoilState(productOptionState);
+  const productOption = useRecoilValue(productOptionState);
   const option = productOption.filter((option) => option.id === optionSetId);
   const { onCreateOption } = useProductOption();
 

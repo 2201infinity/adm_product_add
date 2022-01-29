@@ -7,7 +7,6 @@ import OptionSetListItem from "./OptionSetListItem";
 
 function OptionSetList() {
   const options = useRecoilValue(productOptionState);
-
   if (options.length === 0) return <OptionRecommandMessage />;
 
   return (

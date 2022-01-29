@@ -2,7 +2,7 @@ import { productOptionState } from "atoms/productOption";
 import CustomButton from "components/common/CustomButton";
 import Input from "components/common/Input";
 import React, { useMemo } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 import theme from "styles/theme";
 import AdditionalOptionList from "./AdditionalOptionList";
@@ -10,7 +10,7 @@ import useProductOption from "hooks/useProductOption";
 import useInput from "hooks/useInput";
 
 function OptionListItem({ optionSetId, optionId }) {
-  const [productOption, setProductOption] = useRecoilState(productOptionState);
+  const productOption = useRecoilValue(productOptionState);
   const [normalPrice, onChangeNormalPrice] = useInput();
   const [salePrice, onChangeSalePrice] = useInput();
   const { onDeleteOption, onCreateAdditionalOption } = useProductOption();
