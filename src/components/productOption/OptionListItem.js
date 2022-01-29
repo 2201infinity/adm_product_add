@@ -21,6 +21,18 @@ function OptionListItem({ optionSetId, optionId }) {
   const additionalOptionList = option[0][0].additionalOptions;
 
   const onDeleteOption = () => {
+    // 옵션이 1개면 해당 옵션세트 자체를 지워주기
+    const optionLength = productOption.filter(
+      (option) => option.id === optionSetId
+    )[0].options.length;
+
+    if (optionLength === 1) {
+      setProductOption((prevOptions) =>
+        prevOptions.filter(({ id }) => id !== optionSetId)
+      );
+      return;
+    }
+
     setProductOption((prevOptions) =>
       produce(prevOptions, (draft) => {
         for (let i = 0; i < draft.length; i++) {
