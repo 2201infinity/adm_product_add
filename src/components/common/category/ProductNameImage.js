@@ -1,28 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input from "components/common/Input";
 import { ImageNameButton } from "components/common/ImageNameButton";
 
 function ProductNameImage() {
-  const [productName, setProductName] = useState("");
+  const [name, setName] = useState("");
+  const [info, setInfo] = useState("");
+  const [thumbnailImage, setThumbnailImage] = useState([]);
+  const [mainImages, setMainImages] = useState([]);
+
+  const onChangeThumbImage = (imgArr) => setThumbnailImage(imgArr);
+  const onChangeMainImage = (imgArr) => setMainImages(imgArr);
+
   return (
     <>
       <InputBox>
         <label>상품명</label>
-        <Input width="600" placeholder="상품명을 입력해 주세요." />
-        <span>{"{ 상품코드 }"}</span>
+        <Input
+          onChange={(e) => setName(e.target.value)}
+          width="600"
+          placeholder="상품명을 입력해 주세요."
+        />
+        <TextBox>
+          <span>상품코드 </span>
+          <span>1904858</span>
+        </TextBox>
       </InputBox>
       <InputBox>
         <label>상품 구성 소개 정보</label>
-        <Input width="600" placeholder="상품 구성 소개 정보를 입력해 주세요." />
+        <Input
+          onChange={(e) => setInfo(e.target.value)}
+          width="600"
+          placeholder="상품 구성 소개 정보를 입력해 주세요."
+        />
       </InputBox>
       <ImageBox>
         <span>상품 썸네일</span>
-        <ImageNameButton isMultiple={false} inputId="thumbnailImg" />
+        <ImageNameButton
+          isMultiple={false}
+          inputId="thumbnailImg"
+          onChangeProductImage={onChangeThumbImage}
+        />
       </ImageBox>
       <ImageBox>
         <span>상품 대표 이미지</span>
-        <ImageNameButton isMultiple={true} inputId="representImg" />
+        <ImageNameButton
+          isMultiple={true}
+          inputId="representImg"
+          onChangeProductImage={onChangeMainImage}
+        />
       </ImageBox>
       <TextBox>
         <span>상품 총 재고</span>
