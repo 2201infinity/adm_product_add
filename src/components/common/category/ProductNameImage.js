@@ -1,18 +1,29 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Input from "components/common/Input";
 import { ImageNameButton } from "components/common/ImageNameButton";
 import theme from "styles/theme";
+import { useSetRecoilState } from "recoil";
+import { productRequiredInfoState } from "atoms/productRequiredInfo";
 
 function ProductNameImage() {
   const [name, setName] = useState("");
   const [info, setInfo] = useState("");
   const [thumbnailImage, setThumbnailImage] = useState([]);
   const [mainImages, setMainImages] = useState([]);
+  const setProductRequried = useSetRecoilState(productRequiredInfoState);
 
   const onChangeThumbImage = (imgArr) => setThumbnailImage(imgArr);
   const onChangeMainImage = (imgArr) => setMainImages(imgArr);
+
+  useEffect(() => {
+    if (name.length === 0 || info.length === 0) {
+      setProductRequried((prev) => ({ ...prev, productInfo: false }));
+    } else {
+      setProductRequried((prev) => ({ ...prev, productInfo: true }));
+    }
+  }, [info, name, setProductRequried]);
 
   return (
     <>
@@ -68,8 +79,6 @@ export default ProductNameImage;
 
 const LabelInputBlock = styled.div`
   display: flex;
-  // align-items: center;
-  // height: 80px;
   border-bottom: 1px solid ${theme.colors.border1};
 `;
 
