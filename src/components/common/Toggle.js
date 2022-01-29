@@ -2,7 +2,6 @@ import styled from "styled-components";
 import theme from "styles/theme";
 
 function Toggle({ isChecked, ...rest }) {
-  console.log(isChecked);
   return (
     <Wrapper>
       <CheckBox
@@ -10,7 +9,7 @@ function Toggle({ isChecked, ...rest }) {
         toggleOnCircle={theme.colors.toggleOnCircle}
         toggleOnBg={theme.colors.toggleOnBg}
         type="checkbox"
-        checked={isChecked}
+        checked="isChecked"
       />
     </Wrapper>
   );
