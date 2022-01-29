@@ -14,8 +14,8 @@ function AdditionalOptionListItem({
   return (
     <AdditionalOptionItemStyled>
       ㄴ
-      <OptionInput width={320} height={45} placeholder="추가 옵션명" />
-      <OptionInput width={250} height={45} placeholder="추가 옵션 정상가" />원
+      <OptionInput width={420} height={45} placeholder="추가 옵션명" />
+      <OptionInput width={280} height={45} placeholder="추가 옵션 정상가" />원
       <CustomButton
         width={50}
         height={35}

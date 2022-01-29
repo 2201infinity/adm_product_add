@@ -14,8 +14,7 @@ function ProductOption() {
 }
 
 const ProductOptionContainer = styled.div`
-  margin-top: 40px;
-  min-height: 100%;
+  margin: 40px 0;
   border: 1px solid ${theme.colors.border1};
 `;
 
